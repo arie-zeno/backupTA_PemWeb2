@@ -27,11 +27,81 @@
             </div>
         </div>
 
-        <div class="row" style="height: 90vh">
-            <div class="col-sm-6 msx-auto">
-                <h2 class="fw-bold" id="statistik">Statistik</h2>
-                <p>Jumlah alumni Pendidikan Computer {{count($biodatas)}} </p>
+        <div class="row flex-column align-items-center" style="min-height: 90vh">
+            <h2 class="fw-bold text-center" id="statistik">Statistik</h2>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis quibusdam nulla doloremque obcaecati repudiandae, nam officia quae voluptas distinctio commodi mollitia sapiente dolor quaerat facere iusto repellendus, ducimus rerum cumque?</p>
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">Data Kelulusan Alumni</h3>     
+                <div>
+                  <canvas id="chartKelulusan"></canvas>
+                </div>
+                <p class="text-secondary text-center">Total Alumni Mahasiswa Pendidikan Komputer : {{count($biodatas)}} </p>
+                {{-- <p>Rata rata lama kuliah {{$rata2_kuliah}} Tahun</p> --}}
             </div>
-        </div>
-    </div>
+
+            <div class="col-sm-6 mb-5">      
+              <h3 class="text-center">Status Pekerjaan</h3>     
+                <div>
+                  <canvas id="chartBekerja"></canvas>
+                </div>
+                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+            </div>
+
+            <div class="col-sm-6">      
+              <h3 class="text-center">Status Pekerjaan</h3>     
+                <div>
+                  <canvas id="chartBekerja"></canvas>
+                </div>
+                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+            </div>
+
+        </div>    
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            
+            <script>
+              const cKelulusan = document.getElementById('chartKelulusan'),
+                    cBekerja = document.getElementById('chartBekerja');
+      
+              let dataLulus = [{{count($kelulusan_2020)}}, {{count($kelulusan_2021)}}, 200, {{count($kelulusan_2023)}}, {{count($kelulusan_2024)}}, {{count($kelulusan_2025)}}],
+                  belumBekerja = {{count($belumBekerja)}}
+                  sudahBekerja = {{count($sudahBekerja)}}
+            
+              new Chart(cKelulusan, {
+                type: 'line',
+                data: {
+                  labels: [2020, 2021, 2022,2023,2024,2025],
+                  datasets: [{
+                    label: 'Jumlah',
+                    data: dataLulus,
+                    borderColor: '#36A2EB',
+                    borderWidth: 2,
+                  }]
+                },
+                options: {
+                  scales: {
+                    y: {
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+
+              new Chart(cBekerja, {
+                type: 'pie',
+                data: {
+                  labels: ["Sudah Bekerja", "Belum Bekerja"],
+                  datasets: [{
+                    label: 'Jumlah',
+                    data: [sudahBekerja, belumBekerja],
+                    hoverOffset: 4,
+                    backgroundColor: [
+                      '#E74646',
+                      '#FFE5CA',
+                    ],
+                  }]
+                }
+              });
+            </script>
 @endsection

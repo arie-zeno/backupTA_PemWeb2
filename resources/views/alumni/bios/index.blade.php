@@ -1,10 +1,14 @@
 @extends("alumni.layouts.main")
 @section("container")
+
+<h1 class="mt-4">Halaman biodata</h1>
 @if (count($biodatas) < 1)
     
-<a href="/alumni/bios/create">isi biodata</a>
-@endif
-<h1>Halaman biodata</h1>
+    
+    <div class="col-sm-4 bg-light p-4 rounded mt-5">
+        <h5>Anda belum mengisi biodata, silahkan <a href="/alumni/bios/create">isi biodata</a></h5>
+    </div>
+@else
 
 
 <div class="col-sm-4 bg-light p-4 rounded mt-5">
@@ -32,5 +36,7 @@
         
     @endforeach
 </div>
+
+@endif
 
 @endsection

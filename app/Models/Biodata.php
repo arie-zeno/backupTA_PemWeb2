@@ -11,9 +11,11 @@ class Biodata extends Model
 
     protected $fillable = [
         'name',
+        'user_id',
         'foto',
             'nim',
             'thnLulus',
+            'thnMasuk',
             'jk',
             'tempatLahir',
             'tglLahir',
@@ -21,4 +23,8 @@ class Biodata extends Model
             'pekerjaan',
             'kawin',
     ];
+
+    public function user(){
+        return $this->hasOne(User::class);
+    }
 }

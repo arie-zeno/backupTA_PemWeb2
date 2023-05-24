@@ -20,9 +20,30 @@ use App\Http\Controllers\AlumniBiodataController;
 */
 
 Route::get('/', function () {
+    $biodatas = Biodata::all();
+    $total = 0;
+    $dataKuliah = [];
+    foreach ($biodatas as $biodata) {
+        $selisih = $biodata->thnLulus - $biodata->thnMasuk;
+        $dataKuliah[] = $selisih;
+        $total += $selisih;
+    }
+    $avg = $total/count($biodatas);
+
     return view('home', [
         "title" => "home",
-        "biodatas" => Biodata::all()
+        "biodatas" => Biodata::all(),
+        "dataLamaKuliah" => json_encode($dataKuliah),
+        "rata2_kuliah" => $avg,
+        "kelulusan_2020" => Biodata::where("thnLulus", "2020")->get(),
+        "kelulusan_2021" => Biodata::where("thnLulus", "2021")->get(),
+        "kelulusan_2022" => Biodata::where("thnLulus", "2022")->get(),
+        "kelulusan_2023" => Biodata::where("thnLulus", "2023")->get(),
+        "kelulusan_2024" => Biodata::where("thnLulus", "2024")->get(),
+        "kelulusan_2025" => Biodata::where("thnLulus", "2025")->get(),
+        "belumBekerja" => Biodata::where("pekerjaan", "belum")->get(),
+        "sudahBekerja" => Biodata::where("pekerjaan", "sudah")->get(),
+
     ]);
 });
 

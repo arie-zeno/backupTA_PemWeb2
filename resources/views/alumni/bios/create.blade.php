@@ -10,7 +10,7 @@
       <label for="exampleInputEmail1" class="form-label">Nama</label>
       <input type="name" class="form-control" id="exampleInputname1" aria-describedby="nameHelp" value="{{auth()->user()->name}} " name="name">
     </div>
-    <input type="hidden" name="id" value="{{auth()->user()->id}}">
+    <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
     <div class="mb-3">
         <label for="foto" class="form-label">foto</label>
         <input type="file" class="form-control" id="foto" name="foto" placeholder="foto">

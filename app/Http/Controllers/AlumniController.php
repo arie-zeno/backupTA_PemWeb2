@@ -14,7 +14,7 @@ class AlumniController extends Controller
     public function index()
     {
         return view("alumni.bios.index", [
-            "biodatas" => Biodata::all()
+            "biodatas" => Biodata::where('user_id', auth()->user()->id)->get()
         ]);
         
     }
@@ -36,19 +36,21 @@ class AlumniController extends Controller
         $validatedData = $request->validate([
             'nim' => 'required',
             'name' => 'required',
-            'id' => "required",
+            'user_id' => "required",
             'thnLulus' => 'required',
             'jk' => 'required',
             'tempatLahir' => 'required',
+            'tglLahir' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
             'kawin' => 'required'
         ]);
 
+        $tahunMasuk = "20" . $validatedData["nim"][0].$validatedData["nim"][1];
+        // dd($request);
+        $validatedData["thnMasuk"] = $tahunMasuk;
         // return $validatedData;
 
-        $tahunMasuk = "20" . $validatedData["nim"][0].$validatedData["nim"][1];
-        $validatedData["thnMasuk"] = $tahunMasuk;
         Biodata::create($validatedData);
         return redirect("/alumni/bios")->with("success", "Biodata Berhasil Ditambahkan");
     }

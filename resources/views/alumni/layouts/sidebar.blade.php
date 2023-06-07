@@ -14,7 +14,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{Request::is('alumni/works*') ? 'active' : '' }}" href="/alumni/bios">
+          <a class="nav-link {{Request::is('alumni/works*') ? 'active' : '' }}" href="/alumni/works">
             <span data-feather="file-text" class="align-text-bottom"></span>
             Pekerjaan
           </a>

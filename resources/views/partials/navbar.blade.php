@@ -16,9 +16,8 @@
           <a class="nav-link" href="/#about">Tentang Tracer Study</a>
           <a class="nav-link" href="/#statistik">Statistik</a>
         </div>
-      </div>
-      @auth
-      {{-- <a class="nav-link" href="/logout">Logout</a> --}}
+        @auth
+        {{-- <a class="nav-link" href="/logout">Logout</a> --}}
       <li class="nav-item dropdown" style="list-style: none">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           {{auth()->user()->name}}
@@ -38,6 +37,7 @@
       @else
       <a class="nav-link" href="/login">Login</a>
       @endauth
+    </div>
 
       {{-- <a class="navbar-brand" href="#">{{auth()->user()->name}}</a> --}}
 

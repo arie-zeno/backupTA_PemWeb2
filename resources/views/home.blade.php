@@ -40,11 +40,11 @@
             </div>
 
             <div class="col-sm-6 mb-5">      
-              <h3 class="text-center">Status Pekerjaan</h3>     
+              <h3 class="text-center">Lama masa study</h3>     
                 <div>
-                  <canvas id="chartBekerja"></canvas>
+                  <canvas id="chartLamaKuliah"></canvas>
                 </div>
-                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+                <p class="text-secondary text-center">Rata rata lama masa study {{$rata2_kuliah}} Tahun</p>
             </div>
 
             <div class="col-sm-6">      
@@ -62,44 +62,57 @@
             
             <script>
               const cKelulusan = document.getElementById('chartKelulusan'),
-                    cBekerja = document.getElementById('chartBekerja');
+                    cBekerja = document.getElementById('chartBekerja'),
+                    cLamaKuliah = document.getElementById('chartLamaKuliah');
       
-              let dataLulus = [{{count($kelulusan_2020)}}, {{count($kelulusan_2021)}}, 200, {{count($kelulusan_2023)}}, {{count($kelulusan_2024)}}, {{count($kelulusan_2025)}}],
-                  belumBekerja = {{count($belumBekerja)}}
-                  sudahBekerja = {{count($sudahBekerja)}}
+              let dataLulus = [{{count($kelulusan_2020)}}, {{count($kelulusan_2021)}}, {{count($kelulusan_2022)}}, {{count($kelulusan_2023)}}, {{count($kelulusan_2024)}}, {{count($kelulusan_2025)}}],
+                  belumBekerja = {{count($belumBekerja)}},
+                  sudahBekerja = {{count($sudahBekerja)}},
+                  dataNama = <?= $dataNama?>
+
+                  console.log(dataNama)
             
               new Chart(cKelulusan, {
                 type: 'line',
                 data: {
                   labels: [2020, 2021, 2022,2023,2024,2025],
                   datasets: [{
-                    label: 'Jumlah',
+                    label: 'Lulus',
                     data: dataLulus,
                     borderColor: '#36A2EB',
                     borderWidth: 2,
                   }]
                 },
-                options: {
-                  scales: {
-                    y: {
-                      beginAtZero: true
-                    }
-                  }
-                }
+
               });
 
               new Chart(cBekerja, {
                 type: 'pie',
                 data: {
-                  labels: ["Sudah Bekerja", "Belum Bekerja"],
+                  labels: ["Sudah Bekerja", "Belum Bekerja", "Wirausaha"],
                   datasets: [{
                     label: 'Jumlah',
-                    data: [sudahBekerja, belumBekerja],
+                    data: [sudahBekerja, belumBekerja, 8],
                     hoverOffset: 4,
                     backgroundColor: [
-                      '#E74646',
-                      '#FFE5CA',
+                      '#47A992',
+                      'red',
+                      '#36A2EB'
                     ],
+                  }]
+                }
+              });
+
+              new Chart(cLamaKuliah, {
+                type: 'bar',
+                data: {
+                  labels: dataNama,
+                  datasets: [{
+                    label: 'Tahun',
+                    data: {{$dataLamaKuliah}},
+                    hoverOffset: 4,
+                    borderWidth:2,
+                    backgroundColor: <?=$warnaBar?>
                   }]
                 }
               });

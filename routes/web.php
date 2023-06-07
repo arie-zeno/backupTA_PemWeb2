@@ -1,10 +1,12 @@
 <?php
 
 use App\Models\Biodata;
+use App\Models\Pekerjaan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\AlumniPostController;
 use App\Http\Controllers\AlumniBiodataController;
 
@@ -23,12 +25,22 @@ Route::get('/', function () {
     $biodatas = Biodata::all();
     $total = 0;
     $dataKuliah = [];
+    $dataNama = [];
+    $warnaBar = [];
     foreach ($biodatas as $biodata) {
         $selisih = $biodata->thnLulus - $biodata->thnMasuk;
         $dataKuliah[] = $selisih;
+        $dataNama[] = $biodata->name;
         $total += $selisih;
+        if($selisih > 6){
+            $warnaBar[] = "#B70404";
+        }else if($selisih < 5){
+            $warnaBar[] = "#47A992";
+        }else{
+            $warnaBar[] = "#36A2EB";
+        }
     }
-    $avg = $total/count($biodatas);
+    $avg = $total / count($biodatas);
 
     return view('home', [
         "title" => "home",
@@ -43,6 +55,8 @@ Route::get('/', function () {
         "kelulusan_2025" => Biodata::where("thnLulus", "2025")->get(),
         "belumBekerja" => Biodata::where("pekerjaan", "belum")->get(),
         "sudahBekerja" => Biodata::where("pekerjaan", "sudah")->get(),
+        "dataNama" => json_encode($dataNama),
+        "warnaBar" => json_encode($warnaBar),
 
     ]);
 });
@@ -61,4 +75,5 @@ Route::get('/alumni', function () {
 });
 
 Route::resource('/alumni/bios', AlumniController::class)->middleware("auth");
+Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
 

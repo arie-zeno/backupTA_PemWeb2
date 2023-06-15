@@ -16,7 +16,7 @@ class PekerjaanController extends Controller
     public function index()
     {
         return view("alumni.works.index", [
-            "biodatas" => Biodata::where('user_id', auth()->user()->id)->get()
+            "pekerjaan" => Pekerjaan::all(),
         ]);
     }
 
@@ -33,7 +33,22 @@ class PekerjaanController extends Controller
      */
     public function store(StorePekerjaanRequest $request)
     {
-        //
+ 
+
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'kategori_pekerjaan' => 'required',
+            'nama_pekerjaan' => "required",
+            'tempat_pekerjaan' => 'required',
+            'tanggal_pekerjaan' => 'required',
+            'gaji' => 'required',
+            'relevansi_pekerjaan' => 'required'
+        ]);
+
+        // return $validatedData;
+
+        Pekerjaan::create($validatedData);
+        return redirect("/alumni/works")->with("success", "Pekerjaan Berhasil Ditambahkan");
     }
 
     /**
@@ -47,17 +62,32 @@ class PekerjaanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pekerjaan $pekerjaan)
+    public function edit($id)
     {
-        //
+        return view("alumni.works.edit",[
+            'pekerjaan' => Pekerjaan::find($id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePekerjaanRequest $request, Pekerjaan $pekerjaan)
+    public function update(UpdatePekerjaanRequest $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'kategori_pekerjaan' => 'required',
+            'nama_pekerjaan' => "required",
+            'tempat_pekerjaan' => 'required',
+            'tanggal_pekerjaan' => 'required',
+            'gaji' => 'required',
+            'relevansi_pekerjaan' => 'required'
+        ]);
+
+        // return $validatedData;
+
+        Pekerjaan::where("id", $id)->update($validatedData);
+        return redirect("/alumni/works")->with("success", "Pekerjaan Berhasil Diubah");
     }
 
     /**

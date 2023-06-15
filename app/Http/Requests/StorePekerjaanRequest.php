@@ -11,7 +11,11 @@ class StorePekerjaanRequest extends FormRequest
      */
     public function authorize(): bool
     {
+<<<<<<< HEAD
+        return true;
+=======
         return false;
+>>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
     }
 
     /**

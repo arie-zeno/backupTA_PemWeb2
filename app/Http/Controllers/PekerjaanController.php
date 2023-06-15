@@ -16,7 +16,11 @@ class PekerjaanController extends Controller
     public function index()
     {
         return view("alumni.works.index", [
+<<<<<<< HEAD
             "pekerjaan" => Pekerjaan::all(),
+=======
+            "biodatas" => Biodata::where('user_id', auth()->user()->id)->get()
+>>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
         ]);
     }
 
@@ -33,6 +37,7 @@ class PekerjaanController extends Controller
      */
     public function store(StorePekerjaanRequest $request)
     {
+<<<<<<< HEAD
  
 
         $validatedData = $request->validate([
@@ -49,6 +54,9 @@ class PekerjaanController extends Controller
 
         Pekerjaan::create($validatedData);
         return redirect("/alumni/works")->with("success", "Pekerjaan Berhasil Ditambahkan");
+=======
+        //
+>>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
     }
 
     /**
@@ -62,16 +70,23 @@ class PekerjaanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+<<<<<<< HEAD
     public function edit($id)
     {
         return view("alumni.works.edit",[
             'pekerjaan' => Pekerjaan::find($id)
         ]);
+=======
+    public function edit(Pekerjaan $pekerjaan)
+    {
+        //
+>>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
     }
 
     /**
      * Update the specified resource in storage.
      */
+<<<<<<< HEAD
     public function update(UpdatePekerjaanRequest $request, $id)
     {
         $validatedData = $request->validate([
@@ -88,6 +103,11 @@ class PekerjaanController extends Controller
 
         Pekerjaan::where("id", $id)->update($validatedData);
         return redirect("/alumni/works")->with("success", "Pekerjaan Berhasil Diubah");
+=======
+    public function update(UpdatePekerjaanRequest $request, Pekerjaan $pekerjaan)
+    {
+        //
+>>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
     }
 
     /**

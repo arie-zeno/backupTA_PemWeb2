@@ -16,6 +16,17 @@
                     @enderror
                 </div>
                 <div class="form-floating mb-3">
+                    <input type="text" name="nim" class="form-control @error('nim')
+                        is-invalid
+                    @enderror" id="floatingInput" placeholder="2110131310001" value="{{old('nim')}}">
+                    <label for="floatingInput">Masukkan NIM</label>
+                    @error('nim')
+                        <div class="invalid-feedback">  
+                            {{$message}}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-floating mb-3">
                     <input type="email" name="email" class="form-control @error('email')
                         is-invalid
                     @enderror" id="floatingInput" placeholder="name@example.com" value="{{old('email')}}">

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('biodatas', function (Blueprint $table) {
             $table->id("nim");
+            $table->string("foto")->nullable();
             $table->string("name");
             $table->foreignId("user_id");
             $table->year("thnMasuk");

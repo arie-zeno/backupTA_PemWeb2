@@ -24,7 +24,14 @@ class Biodata extends Model
             'kawin',
     ];
 
+    protected $primaryKey = 'nim';
+    protected $keyType = 'string';
+
     public function user(){
         return $this->hasOne(User::class);
+    }
+
+    public function works(){
+        return $this->hasMany(Pekerjaan::class, "nim", "nim");
     }
 }

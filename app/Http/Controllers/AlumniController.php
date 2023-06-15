@@ -33,9 +33,11 @@ class AlumniController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->file('foto')->store('img');
         $validatedData = $request->validate([
             'nim' => 'required',
             'name' => 'required',
+            'foto' => 'image|file',
             'user_id' => "required",
             'thnLulus' => 'required',
             'jk' => 'required',
@@ -49,6 +51,10 @@ class AlumniController extends Controller
         $tahunMasuk = "20" . $validatedData["nim"][0].$validatedData["nim"][1];
         // dd($request);
         $validatedData["thnMasuk"] = $tahunMasuk;
+
+        if($request->file('foto')){
+            $validatedData['foto'] = $request->file('foto')->store('img');
+        }
         // return $validatedData;
 
         Biodata::create($validatedData);
@@ -60,23 +66,48 @@ class AlumniController extends Controller
      */
     public function show(Biodata $biodata)
     {
-        //
+        return view("alumni.bios.show",[
+            'bio' => $biodata
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Biodata $biodata)
+    public function edit($nim)
     {
-        //
+        return view("alumni.bios.edit",[
+            'bio' => Biodata::find($nim)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Biodata $biodata)
+    public function update(Request $request, $nim)
     {
-        //
+
+        $validatedData = $request->validate([
+            'nim' => 'required',
+            'name' => 'required',
+            'foto' => 'image|file',
+            'user_id' => "required",
+            'thnLulus' => 'required',
+            'jk' => 'required',
+            'tempatLahir' => 'required',
+            'tglLahir' => 'required',
+            'agama' => 'required',
+            'pekerjaan' => 'required',
+            'kawin' => 'required'
+        ]);
+        // return $validatedData;
+        if($request->file('foto')){
+            $validatedData['foto'] = $request->file('foto')->store('img');
+        }
+
+        Biodata::where('nim', $nim)->update($validatedData);
+        $request->session()->flash('success', 'Biodata Berhasil Diubah"');
+        return redirect('/alumni/bios');
     }
 
     /**

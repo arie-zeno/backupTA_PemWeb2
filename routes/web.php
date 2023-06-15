@@ -30,7 +30,6 @@ Route::get('/', function () {
     $total = 0;
     $dataKuliah = [];
     $dataNama = [];
-<<<<<<< HEAD
     $kelulusan_2020 = [];
     $kelulusan_2021 = [];
     $kelulusan_2022 = [];
@@ -46,23 +45,6 @@ Route::get('/', function () {
         $dataKuliah[] = $selisih;
         $dataNama[] = $biodata->name; 
         $total += $selisih;
-=======
-    $warnaBar = [];
-    foreach ($biodatas as $biodata) {
-        $selisih = $biodata->thnLulus - $biodata->thnMasuk;
-        $dataKuliah[] = $selisih;
-        $dataNama[] = $biodata->name;
-        $total += $selisih;
-        if($selisih > 6){
-            $warnaBar[] = "#B70404";
-        }else if($selisih < 5){
-            $warnaBar[] = "#47A992";
-        }else{
-            $warnaBar[] = "#36A2EB";
-        }
-    }
-    $avg = $total / count($biodatas);
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
 
         if($selisih > 6){
             $warnaBar[] = "#B70404";
@@ -106,15 +88,10 @@ Route::get('/', function () {
         "belumBekerja" => Biodata::where("pekerjaan", "belum")->get(),
         "sudahBekerja" => Biodata::where("pekerjaan", "sudah")->get(),
         "dataNama" => json_encode($dataNama),
-<<<<<<< HEAD
         "K6tahun" => $kelulusanLebih6Thn,
         "K5tahun" => $kelulusanLebih5Thn,
         "K3tahun" => $kelulusanKurang4Thn,
         
-=======
-        "warnaBar" => json_encode($warnaBar),
-
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
     ]);
 }else{
     return view('home', [
@@ -139,13 +116,8 @@ Route::get('/alumni', function () {
 });
 
 Route::resource('/alumni/bios', AlumniController::class)->middleware("auth");
-<<<<<<< HEAD
 // Route::get('/alumni/works/{work:id}', [PekerjaanController::class, 'show']); 
 // Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
 Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
 // Route::get('/alumni/works}', [WorkController::class, 'index']);
 // Route::get('/alumni/works/{work}', [WorkController::class, 'show']);
-=======
-Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
-
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a

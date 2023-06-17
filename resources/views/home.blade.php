@@ -52,13 +52,6 @@
                 <p class="text-secondary text-center">Rata rata lama masa study {{$rata2_kuliah}} Tahun</p>
             </div>
 
-            <!-- <div class="col-sm-6 my-5">      
-              <h3 class="text-center">Status Pekerjaan</h3>     
-                <div>
-                  <canvas id="chartLamaKuliah"></canvas>
-                </div>
-                <p class="text-secondary text-center">Rata rata lama masa study {{$rata2_kuliah}} Tahun</p>
-            </div> -->
 
             <div class="col-sm-6 my-5">      
               <h3 class="text-center">Status Pekerjaan</h3>     
@@ -68,14 +61,32 @@
                 <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
             </div>
 
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">Relevansi Pekerjaan</h3>     
+                <div>
+                  <canvas id="chartRelevansi"></canvas>
+                </div>
+                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+            </div>
+
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">Kategori Pekerjaan</h3>     
+                <div>
+                  <canvas id="chartKategori"></canvas>
+                </div>
+                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+            </div>
+
           </div>    
         </div>
-        
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             
             <script>
               const cKelulusan = document.getElementById('chartKelulusan'),
                     cBekerja = document.getElementById('chartBekerja'),
+                    cRelevansi = document.getElementById('chartRelevansi'),
+                    cKategori = document.getElementById('chartKategori'),
                     cLamaKuliah = document.getElementById('chartLamaKuliah');
       
                     
@@ -131,6 +142,35 @@
                   }]
                 }
               });
+
+              new Chart(cRelevansi, {
+                type: 'pie',
+                data: {
+                  labels: ["Relevan", "Tidak Relevan"],
+                  datasets: [{
+                    label: 'Alumni',
+                    data: [{{$pRelevan}}, {{$pTRelevan}} ],
+                    hoverOffset: 4,
+                    borderWidth:2,
+                    backgroundColor: ['#47A992', 'red']
+                  }]
+                }
+              });
+
+              new Chart(cKategori, {
+                type: 'pie',
+                data: {
+                  labels: ["IT Non kependidikan", "IT kependidikan", "Kependidikan IT", "Kependidikan Non IT" ],
+                  datasets: [{
+                    label: 'Alumni',
+                    data: [{{ $kategoriPekerjaan1}}, {{ $kategoriPekerjaan2 }}, {{ $kategoriPekerjaan3 }}, {{ $kategoriPekerjaan4 }} ],
+                    hoverOffset: 4,
+                    borderWidth:2,
+                    backgroundColor: ['#47A992', 'red', 'blue', 'brown']
+                  }]
+                }
+              });
+
             </script>
-                      @endif
+                  @endif
 @endsection

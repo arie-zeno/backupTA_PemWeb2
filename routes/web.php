@@ -72,6 +72,32 @@ Route::get('/', function () {
         }
     }
 
+    $pRelevan = 0;
+    $pTRelevan = 0;
+    $kategoriPekerjaan1 = 0;
+    $kategoriPekerjaan2 = 0;
+    $kategoriPekerjaan3 = 0;
+    $kategoriPekerjaan4 = 0;
+
+
+    foreach($pekerjaans as $pekerjaan){
+        if($pekerjaan->relevansi_pekerjaan == "relevan"){
+            $pRelevan += 1;
+        }else{
+            $pTRelevan += 1;
+        }
+
+        if($pekerjaan->kategori_pekerjaan == "IT Non kependidikan"){
+            $kategoriPekerjaan1 += 1;
+        }else if($pekerjaan->kategori_pekerjaan == "IT kependidikan"){
+            $kategoriPekerjaan2 += 1;            
+        }else if($pekerjaan->kategori_pekerjaan == "Kependidikan IT"){
+            $kategoriPekerjaan3 += 1;
+        }else if($pekerjaan->kategori_pekerjaan == "Kependidikan Non IT"){
+            $kategoriPekerjaan4 += 1;
+        }
+    }
+
     $avg = $total / count($biodatas);
     
     return view('home', [
@@ -91,6 +117,12 @@ Route::get('/', function () {
         "K6tahun" => $kelulusanLebih6Thn,
         "K5tahun" => $kelulusanLebih5Thn,
         "K3tahun" => $kelulusanKurang4Thn,
+        "pRelevan" => $pRelevan,
+        "pTRelevan" => $pTRelevan,
+        "kategoriPekerjaan1" => $kategoriPekerjaan1,
+        "kategoriPekerjaan2" => $kategoriPekerjaan2,
+        "kategoriPekerjaan3" => $kategoriPekerjaan3,
+        "kategoriPekerjaan4" => $kategoriPekerjaan4,
         
     ]);
 }else{

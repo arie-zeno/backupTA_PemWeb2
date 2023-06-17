@@ -4,7 +4,6 @@
 
 <div class="col-sm-6">
 
-<<<<<<< HEAD
     <form method="POST" action="/alumni/works">
         
     @csrf
@@ -14,14 +13,6 @@
     <div class="mb-3">
         <label for="kategori_pekerjaan" class="form-label">Kategori Pekerjaan</label>
         <select id="kategori_pekerjaan" class="form-select" aria-describedby="basic-addon4" name="kategori_pekerjaan">
-=======
-    <form method="POST" action="/alumni/bios" enctype="multipart/form-data">
-        @csrf
-
-    <div class="mb-3">
-        <label for="kategori_pekerjaan" class="form-label">Kategori Pekerjaan</label>
-        <select id="kategori_pekerjaan" class="form-select" aria-describedby="basic-addon4 name="kategori_pekerjaan">
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
             <option selected>--Pilih Kategori--</option>
             <option value="IT Non kependidikan">IT ~ Non Kependidikan</option>
             <option value="IT kependidikan">IT ~ Kependidikan</option>
@@ -50,15 +41,9 @@
       </div>
 
     <div class="mb-3">
-<<<<<<< HEAD
         <label for="tanggal_pekerjaan" class="form-label">Tanggal Mendapatkan Pekerjaan</label>
         <div class="input-group">
             <input type="date" aria-label="Last name" id="tanggal_pekerjaan" class="form-control" name="tanggal_pekerjaan">
-=======
-        <label for="tanggal_bekerja" class="form-label">Tanggal Mendapatkan Pekerjaan</label>
-        <div class="input-group">
-            <input type="date" aria-label="Last name" id="tanggal_bekerja" class="form-control" name="tanggal_pekerjaan">
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
         </div>
     </div>
 
@@ -66,22 +51,13 @@
         <label for="gaji" class="form-label">Besaran Kisaran Gaji</label>
         <div class="input-group">
             <input type="number" class="form-control" id="gaji" name="gaji" placeholder="5000000">
-<<<<<<< HEAD
             <input type="text" class="form-control" id="nominal" value="" disabled>
-=======
-            <input type="text" class="form-control" id="nominal" name="gaji" value="" disabled>
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
         </div>
     </div>
 
     <div class="mb-3">
-<<<<<<< HEAD
         <label for="relevansi_pekerjaan" class="form-label">Relevansi Pekerjaan (Menurut Anda)</label>
         <select id="relevansi_pekerjaan" class="form-select" aria-describedby="basic-addon4" name="relevansi_pekerjaan">
-=======
-        <label for="kategori_pekerjaan" class="form-label">Relevansi Pekerjaan (Menurut Anda)</label>
-        <select id="kategori_pekerjaan" class="form-select" aria-describedby="basic-addon4 name="kategori_pekerjaan">
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
             <option selected>--Pilih Relevansi--</option>
             <option value="relevan">Relevan</option>
             <option value="tidak relevan">Tidak Relevan</option>

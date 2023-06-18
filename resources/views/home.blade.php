@@ -77,6 +77,14 @@
                 <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
             </div>
 
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">Gaji Alumni</h3>     
+                <div>
+                  <canvas id="chartGaji"></canvas>
+                </div>
+                <p class="text-secondary text-center">Rata-rata Gaji Alumni : Rp. {{($avgGaji)}} </p>
+            </div>
+
           </div>    
         </div>
 
@@ -87,6 +95,7 @@
                     cBekerja = document.getElementById('chartBekerja'),
                     cRelevansi = document.getElementById('chartRelevansi'),
                     cKategori = document.getElementById('chartKategori'),
+                    cGaji = document.getElementById('chartGaji'),
                     cLamaKuliah = document.getElementById('chartLamaKuliah');
       
                     
@@ -109,6 +118,23 @@
                   }]
                 },
 
+                options: {
+                  animations: {
+                    tension: {
+                      duration: 1000,
+                      easing: 'linear',
+                      from: 1,
+                      to: 0,
+                      loop: true
+                    }
+                  },
+                  scales: {
+                    y: { // defining min and max so hiding the dataset does not change scale range
+                      min: 0,
+                      max: 3
+                    }
+                  }
+                }
               });
 
               new Chart(cBekerja, {
@@ -139,7 +165,15 @@
                     hoverOffset: 4,
                     borderWidth:2,
                     backgroundColor: ['#47A992', '#36A2EB', '#B70404']
-                  }]
+                  }],
+                },
+                options:{
+                  scales: {
+                    y: { // defining min and max so hiding the dataset does not change scale range
+                      min: 0,
+                      max: 100
+                    }
+                  }
                 }
               });
 
@@ -154,23 +188,37 @@
                     borderWidth:2,
                     backgroundColor: ['#47A992', 'red']
                   }]
-                }
+                },
               });
 
               new Chart(cKategori, {
                 type: 'pie',
                 data: {
-                  labels: ["IT Non kependidikan", "IT kependidikan", "Kependidikan IT", "Kependidikan Non IT" ],
+                  labels: ["IT Non kependidikan", "IT kependidikan", "Kependidikan IT", "Kependidikan Non IT", "Non IT Non Kependidikan" ],
                   datasets: [{
                     label: 'Alumni',
-                    data: [{{ $kategoriPekerjaan1}}, {{ $kategoriPekerjaan2 }}, {{ $kategoriPekerjaan3 }}, {{ $kategoriPekerjaan4 }} ],
+                    data: [{{ $kategoriPekerjaan1}}, {{ $kategoriPekerjaan2 }}, {{ $kategoriPekerjaan3 }}, {{ $kategoriPekerjaan4 }}, {{ $kategoriPekerjaan5 }} ],
                     hoverOffset: 4,
                     borderWidth:2,
-                    backgroundColor: ['#47A992', 'red', 'blue', 'brown']
+                    backgroundColor: ['lightblue', '#47A992', 'blue', 'brown', 'red']
+                  }]
+                }
+              });
+
+              new Chart(cGaji, {
+                type: 'line',
+                data: {
+                  labels: ["1 ~ 3 Juta", "3 ~ 8 Juta", "8 ~ 13 Juta", "13 ~ 18 Juta", "18 ~ 25 Juta" ],
+                  datasets: [{
+                    label: 'Jumlah',
+                    data: [{{ $gajiAlumni[0]}}, {{ $gajiAlumni[1] }}, {{ $gajiAlumni[2] }}, {{ $gajiAlumni[3] }}, {{ $gajiAlumni[4] }} ],
+                    hoverOffset: 4,
+                    borderWidth:2,
+                    backgroundColor: ['lightblue', '#47A992', 'blue', 'brown', 'red']
                   }]
                 }
               });
 
             </script>
-                  @endif
+        @endif
 @endsection

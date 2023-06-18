@@ -4,6 +4,7 @@ use App\Models\Biodata;
 use App\Models\Pekerjaan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\RegisterController;
@@ -78,7 +79,11 @@ Route::get('/', function () {
     $kategoriPekerjaan2 = 0;
     $kategoriPekerjaan3 = 0;
     $kategoriPekerjaan4 = 0;
+    $kategoriPekerjaan5 = 0;
 
+    $gajiAlumni = [0,0,0,0,0];
+
+    $totalGaji = 0;
 
     foreach($pekerjaans as $pekerjaan){
         if($pekerjaan->relevansi_pekerjaan == "relevan"){
@@ -95,8 +100,28 @@ Route::get('/', function () {
             $kategoriPekerjaan3 += 1;
         }else if($pekerjaan->kategori_pekerjaan == "Kependidikan Non IT"){
             $kategoriPekerjaan4 += 1;
+        }else if($pekerjaan->kategori_pekerjaan == "Non IT Non Kependidikan"){
+            $kategoriPekerjaan5 += 1;
+        }
+
+        if($pekerjaan->gaji > 1000000 && $pekerjaan->gaji < 3000000){
+            $gajiAlumni[0] += 1;
+            $totalGaji += $pekerjaan->gaji;
+        }else if($pekerjaan->gaji >= 3000000 && $pekerjaan->gaji < 8000000){
+            $gajiAlumni[2] += 1;
+            $totalGaji += $pekerjaan->gaji;
+        }else if($pekerjaan->gaji >= 8000000 && $pekerjaan->gaji < 13000000){
+            $gajiAlumni[3] += 1;
+            $totalGaji += $pekerjaan->gaji;
+        }else if($pekerjaan->gaji >= 13000000 && $pekerjaan->gaji < 18000000){
+            $gajiAlumni[4] += 1;
+            $totalGaji += $pekerjaan->gaji;
+        }else if($pekerjaan->gaji >= 18000000 && $pekerjaan->gaji < 25000000){
+            $gajiAlumni[5] += 1;
+            $totalGaji += $pekerjaan->gaji;
         }
     }
+    $avgGaji = $totalGaji / count($pekerjaans);
 
     $avg = $total / count($biodatas);
     
@@ -123,6 +148,9 @@ Route::get('/', function () {
         "kategoriPekerjaan2" => $kategoriPekerjaan2,
         "kategoriPekerjaan3" => $kategoriPekerjaan3,
         "kategoriPekerjaan4" => $kategoriPekerjaan4,
+        "kategoriPekerjaan5" => $kategoriPekerjaan5,
+        "gajiAlumni" => $gajiAlumni,
+        "avgGaji" => $avgGaji,
         
     ]);
 }else{
@@ -151,5 +179,12 @@ Route::resource('/alumni/bios', AlumniController::class)->middleware("auth");
 // Route::get('/alumni/works/{work:id}', [PekerjaanController::class, 'show']); 
 // Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
 Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
+Route::resource('/admin', AdminController::class)->middleware("auth");
 // Route::get('/alumni/works}', [WorkController::class, 'index']);
 // Route::get('/alumni/works/{work}', [WorkController::class, 'show']);
+
+// Route::get('/admin/pdf', [AdminController::class, 'exportPDF'])->name('export.pdf');
+
+Route::get('file-import-export', [AdminController::class, 'fileImportExport']);
+Route::post('file-import', [AdminController::class, 'fileImport'])->name('file-import');
+Route::get('file-export', [AdminController::class, 'fileExport'])->name('file-export');

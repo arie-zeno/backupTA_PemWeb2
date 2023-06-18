@@ -14,18 +14,12 @@ return new class extends Migration
         Schema::create('pekerjaans', function (Blueprint $table) {
             $table->id();
             $table->foreignId("nim");
-<<<<<<< HEAD
             $table->string("kategori_pekerjaan");
             $table->string("nama_pekerjaan");
             $table->string("tempat_pekerjaan");
             $table->date("tanggal_pekerjaan");
             $table->integer("gaji");
             $table->string("relevansi_pekerjaan");
-=======
-            $table->string("kategori");
-            $table->string("nama_pekerjaan");
-            $table->date("tanggal_masuk");
->>>>>>> 84e084bdb39e2781841d2f201b35d1d85fd9b45a
             $table->timestamps();
         });
     }

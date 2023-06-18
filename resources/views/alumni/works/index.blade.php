@@ -7,6 +7,10 @@ $warning = true;
 ?>
 <h1 class="mt-4">Halaman Pekerjaan</h1>
 
+
+@if (count($pekerjaan) != 0)
+    
+
 @if($pekerjaan[0]->pekerjaan == "belum")
     <div class="col-sm-4 bg-light p-4 rounded mt-5">
         <h5>Anda tidak bisa mengisi data pekerjaan karena status anda belum bekerja</h5>
@@ -48,8 +52,11 @@ $warning = true;
     </div>
     @endif
 @endif
-
-
+@else
+        <div class="col-sm-4 bg-light p-4 rounded mt-5">
+            <h5>Anda belum mengisi data pekerjaan, silahkan <a href="/alumni/works/create">isi data pekerjaan</a></h5>
+        </div>
+@endif
 
 
 @endsection

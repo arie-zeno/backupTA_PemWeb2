@@ -18,7 +18,11 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
-            return redirect()->intended('/alumni');
+            if($credentials['email'] != 'admin@gmail.com'){
+                return redirect()->intended('/alumni');
+            }else{
+                return redirect()->intended('/admin');
+            }
         }
         
         return back()->with("loginError", "Login failed");

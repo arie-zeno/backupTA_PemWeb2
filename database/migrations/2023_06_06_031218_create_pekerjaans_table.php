@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId("nim");
             $table->string("kategori_pekerjaan");
             $table->string("nama_pekerjaan");
-            $table->string("tempat_pekerjaan");
+            $table->string("tempat_pekerjaan")->nullable();
             $table->date("tanggal_pekerjaan");
             $table->integer("gaji");
             $table->string("relevansi_pekerjaan");

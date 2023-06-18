@@ -2,19 +2,19 @@
     <div class="position-sticky pt-3 sidebar-sticky">
       <ul class="nav flex-column">
         <li class="nav-item">
-          <a class="nav-link {{Request::is('admin') ? 'active' : '' }} " aria-current="page" href="/admin">
+          <a class="nav-link {{Request::is('admin/user*') ? 'active' : '' }} " aria-current="page" href="/admin/user">
             <span data-feather="home" class="align-text-bottom"></span>
             Dashboard
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{Request::is('admin#biodata') ? 'active' : '' }}" href="/admin#biodata">
+          <a class="nav-link {{Request::is('admin/biodata*') ? 'active' : '' }}" href="/admin/biodata">
             <span data-feather="file-text" class="align-text-bottom"></span>
             Biodata
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link {{Request::is('admin#pekerjaan') ? 'active' : '' }}" href="/admin#pekerjaan">
+          <a class="nav-link {{Request::is('admin/pekerjaan*') ? 'active' : '' }}" href="/admin/pekerjaan">
             <span data-feather="file-text" class="align-text-bottom"></span>
             Pekerjaan
           </a>

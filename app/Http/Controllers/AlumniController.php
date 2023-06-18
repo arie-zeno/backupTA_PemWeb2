@@ -14,7 +14,7 @@ class AlumniController extends Controller
     public function index()
     {
         return view("alumni.bios.index", [
-            "biodatas" => Biodata::where('user_id', auth()->user()->id)->get()
+            "biodatas" => Biodata::where('nim', auth()->user()->nim)->get()
         ]);
         
     }

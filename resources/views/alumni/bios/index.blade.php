@@ -31,8 +31,11 @@
     <div class="col-sm-4 bg-light p-4 rounded mt-5">
         
         <!-- <label class="text-secondary" for="">Nama</label> -->
+        @if($biodata->foto)
         <img src="{{asset('storage/' . $biodata->foto) }}" class="img-thumbnail" alt="...">
-        
+        @else
+            <img src="/img/noImage.png" class="img-thumbnail" alt="...">
+        @endif
     </div>
 
 <div class="col-sm-4 bg-light p-4 rounded mt-5">

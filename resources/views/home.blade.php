@@ -23,7 +23,7 @@
             <div class="col-sm-6">
                 <h6 class="text-secondary" >Tentang Tracer Study</h6>
                 <h2 class="fw-bold">Apa itu Tracer Study ?</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus blanditiis saepe tempore neque magni eaque labore esse sequi libero maiores, dicta aliquam rerum optio earum, ducimus accusantium eveniet a tempora.</p>
+                <p>Tracer Study adalah website yang mengumpulkan data tentang kiprah lulusan di dunia kerja untuk meningkatkan kualitas pendidikan dan program-program perguruan tinggi. Data yang dikumpulkan mencakup data kelulusan alumni, data pekerjan alumni, dan lain lain.</p>
             </div>
         </div>
 
@@ -130,8 +130,7 @@
                   },
                   scales: {
                     y: { // defining min and max so hiding the dataset does not change scale range
-                      min: 0,
-                      max: 3
+                      beginAtZero: true
                     }
                   }
                 }
@@ -140,10 +139,10 @@
               new Chart(cBekerja, {
                 type: 'pie',
                 data: {
-                  labels: ["Sudah Bekerja", "Belum Bekerja", "Wirausaha"],
+                  labels: ["Sudah Bekerja", "Belum Bekerja"],
                   datasets: [{
                     label: 'Jumlah',
-                    data: [sudahBekerja, belumBekerja, 8],
+                    data: [sudahBekerja, belumBekerja],
                     hoverOffset: 4,
                     backgroundColor: [
                       '#47A992',
@@ -170,8 +169,7 @@
                 options:{
                   scales: {
                     y: { // defining min and max so hiding the dataset does not change scale range
-                      min: 0,
-                      max: 100
+                      beginAtZero: true
                     }
                   }
                 }
@@ -214,8 +212,16 @@
                     data: [{{ $gajiAlumni[0]}}, {{ $gajiAlumni[1] }}, {{ $gajiAlumni[2] }}, {{ $gajiAlumni[3] }}, {{ $gajiAlumni[4] }} ],
                     hoverOffset: 4,
                     borderWidth:2,
+                    borderColor:'lightblue',
                     backgroundColor: ['lightblue', '#47A992', 'blue', 'brown', 'red']
                   }]
+                },
+                options:{
+                  scales: {
+                    y: { // defining min and max so hiding the dataset does not change scale range
+                      beginAtZero: true
+                    }
+                  }
                 }
               });
 

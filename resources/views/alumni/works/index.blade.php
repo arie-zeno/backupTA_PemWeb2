@@ -3,7 +3,6 @@
 
 <?php
 use Carbon\Carbon;
-$warning = true;
 ?>
 <h1 class="mt-4">Halaman Pekerjaan</h1>
 
@@ -40,7 +39,7 @@ $warning = true;
 
 
         <label class="text-secondary" for="">Mulai Bekerja</label>
-        <h6 class="fw-bold">{{Carbon::parse($pekerjaan[0]->works[0]->tanggal_pekerjaan)->locale('id')->diffForHumans($pekerjaan[0]->thnLulus . '01-01')}} (kelulusan)</h6>
+        <h6 class="fw-bold">{{Carbon::parse($pekerjaan[0]->works[0]->tanggal_pekerjaan)->locale('id')->diffForHumans($pekerjaan[0]->thnLulus . '0101')}} (kelulusan)</h6>
         <!-- <h6 class="fw-bold">{{$pekerjaan[0]->tanggal_pekerjaan}}</h6> -->
 
 

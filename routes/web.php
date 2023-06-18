@@ -10,7 +10,9 @@ use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\AlumniPostController;
+use App\Http\Controllers\AdminBiodataController;
 use App\Http\Controllers\AlumniBiodataController;
+use App\Http\Controllers\AdminPekerjaanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -108,22 +110,24 @@ Route::get('/', function () {
             $gajiAlumni[0] += 1;
             $totalGaji += $pekerjaan->gaji;
         }else if($pekerjaan->gaji >= 3000000 && $pekerjaan->gaji < 8000000){
-            $gajiAlumni[2] += 1;
+            $gajiAlumni[1] += 1;
             $totalGaji += $pekerjaan->gaji;
         }else if($pekerjaan->gaji >= 8000000 && $pekerjaan->gaji < 13000000){
-            $gajiAlumni[3] += 1;
+            $gajiAlumni[2] += 1;
             $totalGaji += $pekerjaan->gaji;
         }else if($pekerjaan->gaji >= 13000000 && $pekerjaan->gaji < 18000000){
-            $gajiAlumni[4] += 1;
+            $gajiAlumni[3] += 1;
             $totalGaji += $pekerjaan->gaji;
         }else if($pekerjaan->gaji >= 18000000 && $pekerjaan->gaji < 25000000){
-            $gajiAlumni[5] += 1;
+            $gajiAlumni[4] += 1;
             $totalGaji += $pekerjaan->gaji;
         }
     }
+    $avg = $total / count($biodatas);
+
+
     $avgGaji = $totalGaji / count($pekerjaans);
 
-    $avg = $total / count($biodatas);
     
     return view('home', [
         "title" => "home",
@@ -179,12 +183,25 @@ Route::resource('/alumni/bios', AlumniController::class)->middleware("auth");
 // Route::get('/alumni/works/{work:id}', [PekerjaanController::class, 'show']); 
 // Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
 Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
-Route::resource('/admin', AdminController::class)->middleware("auth");
+Route::resource('/admin/user', AdminController::class)->middleware("auth");
+Route::resource('/admin/biodata', AdminBiodataController::class)->middleware("auth");
+Route::resource('/admin/pekerjaan', AdminPekerjaanController::class)->middleware("auth");
 // Route::get('/alumni/works}', [WorkController::class, 'index']);
 // Route::get('/alumni/works/{work}', [WorkController::class, 'show']);
 
 // Route::get('/admin/pdf', [AdminController::class, 'exportPDF'])->name('export.pdf');
 
+// user
 Route::get('file-import-export', [AdminController::class, 'fileImportExport']);
 Route::post('file-import', [AdminController::class, 'fileImport'])->name('file-import');
 Route::get('file-export', [AdminController::class, 'fileExport'])->name('file-export');
+
+// biodata
+Route::get('biodata-import-export', [AdminBiodataController::class, 'fileImportExport']);
+Route::post('biodata-import', [AdminBiodataController::class, 'fileImport'])->name('biodata-import');
+Route::get('biodata-export', [AdminBiodataController::class, 'fileExport'])->name('biodata-export');
+
+// pekerjaan
+Route::get('pekerjaan-import-export', [AdminPekerjaanController::class, 'fileImportExport']);
+Route::post('pekerjaan-import', [AdminPekerjaanController::class, 'fileImport'])->name('pekerjaan-import');
+Route::get('pekerjaan-export', [AdminPekerjaanController::class, 'fileExport'])->name('pekerjaan-export');

@@ -23,7 +23,12 @@
           {{auth()->user()->name}}
         </a>
         <ul class="dropdown-menu">
+          @if (auth()->user()->name == "admin")
+          <li><a class="dropdown-item btn" href="/admin/user">Halaman Admin</a></li>
+          @else
           <li><a class="dropdown-item" href="/alumni">My Dashboard</a></li>
+          @endif
+
           <form action="/logout" method="post">
             @csrf
             <li>

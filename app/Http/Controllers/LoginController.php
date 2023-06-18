@@ -16,12 +16,15 @@ class LoginController extends Controller
             "password" => "required"
         ]);
 
-        if(Auth::attempt($credentials)){
-            $request->session()->regenerate();
-            if($credentials['email'] != 'admin@gmail.com'){
-                return redirect()->intended('/alumni');
-            }else{
-                return redirect()->intended('/admin');
+        if($credentials["email"] == 'admin@gmail.com'){
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+                    return redirect()->intended('/admin/user');
+            }
+        }else{
+            if(Auth::attempt($credentials)){
+                $request->session()->regenerate();
+                    return redirect()->intended('/alumni');
             }
         }
         

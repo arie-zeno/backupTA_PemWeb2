@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string("tempatLahir")->nullable();
             $table->date("tglLahir")->nullable();
             $table->string("jk");
-            $table->string("agama");
-            $table->string("kawin");
+            $table->string("agama")->nullable();
+            $table->string("kawin")->nullable();
             $table->string("pekerjaan");
             $table->timestamps();
         });

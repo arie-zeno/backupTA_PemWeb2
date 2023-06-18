@@ -2,37 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Biodata;
-use Barryvdh\DomPDF\PDF;
-use App\Exports\UsersExport;
-use App\Imports\UsersImport;
+use App\Models\Pekerjaan;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Exports\PekerjaanExport;
+use App\Imports\PekerjaanImport;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 
-class AdminController extends Controller
+class AdminPekerjaanController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("adminDash.index", [
-            "users" => User::all(),
+        return view("adminDash.pekerjaan.index", [
+            "pekerjaans" => Pekerjaan::all(),
         ]);
     }
 
-    // public function exportPDF(){
-    //     $data = DB::table('users')->get();
-    //     $pdf = PDF::loadView('export', compact('data'));
-    //     return $pdf->download('data-user.pdf');
-    // }
-
     public function fileImportExport()
     {
-       return view('file-import');
+       return view('pekerjaan-import');
     }
    
     /**
@@ -40,7 +32,7 @@ class AdminController extends Controller
     */
     public function fileImport(Request $request) 
     {
-        Excel::import(new UsersImport, $request->file('file')->store('temp'));
+        Excel::import(new PekerjaanImport, $request->file('file')->store('temp'));
         return back();
     }
     /**
@@ -48,8 +40,9 @@ class AdminController extends Controller
     */
     public function fileExport() 
     {
-        return Excel::download(new UsersExport, 'data user tracer study.xlsx');
+        return Excel::download(new PekerjaanExport, 'data pekerjaan tracer study.xlsx');
     }    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -95,7 +88,7 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        User::destroy($id);
-        return redirect('/admin/user')->with('success', 'Data Berhasil Dihapus');
+        Biodata::destroy($id);
+        return redirect('/admin/pekerjaan')->with('success', 'Data Berhasil Dihapus');
     }
 }

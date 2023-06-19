@@ -27,14 +27,19 @@
     <script>
 
       let navbar = document.getElementById("navbar");
+      let navbarNav = document.getElementById("navbar-nav");
       window.addEventListener("scroll", () =>{
         console.log(window.scrollY)
         if(window.scrollY > 100){
-          navbar.style.backgroundColor = "white"
-          navbar.style.boxShadow = "3px 3px 3px black"
-        }else{
+          // navbar.style.backgroundColor = "#eca457"
+          navbar.style.backgroundColor = "#ffffff88"
+          navbar.style.boxShadow = "2px 2px 2px black"
+          navbar.style.transform = "translateY(0)"
+        }else {
           navbar.style.backgroundColor = "transparent"
           navbar.style.boxShadow = "none"
+          navbar.style.transform = "translateY(-120px)"
+          
         }
       });
 

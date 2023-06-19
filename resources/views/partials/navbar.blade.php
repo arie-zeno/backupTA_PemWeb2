@@ -1,20 +1,32 @@
-{{-- <style>
-    nav.navbar:hover{
-        background-color: #3333;
-    }
-</style> --}}
-
-<nav id="navbar" class="navbar navbar-expand-lg sticky-top">
+<style>
+  .navbar-nav .nav-link {
+    color: black;
+    /* border-radius: 10%; */
+    padding: 5px;
+    margin: 0 10px;
+  }
+  .navbar-brand{
+    background-color: rgb(63, 63, 228);
+    color: white;
+    /* border-radius: 10%; */
+    padding: 5px 10px;
+    margin: 0 10px;
+  }
+  #navbar{
+    transform: translateY(-120px);
+  }
+</style>
+<nav id="navbar" class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Tracer Study</a>
+      <a class="navbar-brand btn btn-sm" href="#">Tracer Study</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav m-auto ">
-          <a class="nav-link" aria-current="page" href="/#">Home</a>
-          <a class="nav-link" href="/#about">Tentang Tracer Study</a>
-          <a class="nav-link" href="/#statistik">Statistik</a>
+        <div class="navbar-nav m-auto " id="navbar-nav">
+          <a class="nav-link btn btn-sm" aria-current="page" href="/#">Home</a>
+          <a class="nav-link btn btn-sm" href="/#about">Tracer Study</a>
+          <a class="nav-link btn btn-sm" href="/#statistik">Statistik</a>
         </div>
         @auth
         {{-- <a class="nav-link" href="/logout">Logout</a> --}}
@@ -40,7 +52,7 @@
         </ul>
       </li>  
       @else
-      <a class="nav-link" href="/login">Login</a>
+      <a class="nav-link " href="/login">Login</a>
       @endauth
     </div>
 

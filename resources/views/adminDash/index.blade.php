@@ -86,7 +86,7 @@
         <td>{{ $user->nim }}</td>
         <td>{{ $user->email }}</td>
       <td>
-        <form action="/admin/{{$user->id}}" method="post">
+        <form action="/admin/user/{{$user->id}}" method="post">
           @method('delete')
           @csrf
           @if ($user->name != "admin")

@@ -171,7 +171,7 @@
                 <div>
                   <canvas id="chartRelevansi"></canvas>
                 </div>
-                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+                <p class="text-secondary text-center">Sebanyak {{($pRelevan)}} alumni merasa relevan dan {{ ($pTRelevan) }} alumni merasa tidak relevan dengan pekerjaannya </p>
             </div>
 
             <div class="col-sm-6 my-5">      

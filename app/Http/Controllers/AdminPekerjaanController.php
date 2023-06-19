@@ -88,7 +88,7 @@ class AdminPekerjaanController extends Controller
      */
     public function destroy(string $id)
     {
-        Biodata::destroy($id);
+        Pekerjaan::destroy($id);
         return redirect('/admin/pekerjaan')->with('success', 'Data Berhasil Dihapus');
     }
 }

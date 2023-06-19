@@ -95,7 +95,7 @@ use Carbon\Carbon;
         <td>{{Carbon::parse($pekerjaan->tanggal_pekerjaan)->locale('id')->diffForHumans($pekerjaan->biodata->thnLulus . '0101')}} (kelulusan)</td>
         <td>{{ $pekerjaan->gaji }}</td>
       <td>
-        <form action="/admin/pekerjaan/{{$pekerjaan->nim}}" method="post">
+        <form action="/admin/pekerjaan/{{$pekerjaan->id}}" method="post">
           @method('delete')
           @csrf
           @if ($pekerjaan->biodata->name != "admin")

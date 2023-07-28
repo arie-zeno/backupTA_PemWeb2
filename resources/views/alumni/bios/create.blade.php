@@ -34,7 +34,7 @@
 
     <div class="mb-3">
         <label for="ipk" class="form-label">IPK</label>
-        <input type="number" class="form-control" id="ipk" name="ipk" placeholder="Contoh : 3.8">
+        <input type="text" class="form-control" id="ipk" name="ipk" placeholder="Contoh : 3.8">
     </div>
 
     <div class="mb-3">

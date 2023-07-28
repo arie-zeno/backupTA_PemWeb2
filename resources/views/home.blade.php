@@ -136,7 +136,7 @@
             <h2 class="fw-bold text-center" id="statistik">Statistik</h2>
             <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis quibusdam nulla doloremque obcaecati repudiandae, nam officia quae voluptas distinctio commodi mollitia sapiente dolor quaerat facere iusto repellendus, ducimus rerum cumque?</p> -->
       
-            @if (count($biodatas) > 0)
+            @if (count($biodatas) > 0 && count($pekerjaans) > 0)
               
             
 

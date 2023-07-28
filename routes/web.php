@@ -28,7 +28,7 @@ use App\Http\Controllers\AdminPekerjaanController;
 Route::get('/', function () {
     $biodatas = Biodata::all();
     $pekerjaans = Pekerjaan::all();
-    if(count($biodatas) >= 1){
+    if(count($biodatas) >= 1 and count($pekerjaans) >= 1 ){
 
     $total = 0;
     $dataKuliah = [];
@@ -292,7 +292,8 @@ Route::get('/', function () {
 }else{
     return view('home', [
         "title" => "home",
-        "biodatas" => Biodata::all()
+        "biodatas" => Biodata::all(),
+        "pekerjaans" => Pekerjaan::all(),
     
     ]);
 }

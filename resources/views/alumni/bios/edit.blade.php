@@ -37,7 +37,7 @@
 
     <div class="mb-3">
         <label for="ipk" class="form-label">IPK</label>
-        <input type="number" class="form-control @error('ipk')
+        <input type="text" class="form-control @error('ipk')
             is-invalid
         @enderror" id="ipk" name="ipk" placeholder="Contoh : 3.8" value="{{$bio->ipk}}">
     </div>

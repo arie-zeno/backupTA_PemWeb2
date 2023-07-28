@@ -60,7 +60,9 @@
         <select id="relevansi_pekerjaan" class="form-select" aria-describedby="basic-addon4" name="relevansi_pekerjaan">
             <option selected value="{{$pekerjaan->relevansi_pekerjaan}}">{{$pekerjaan->relevansi_pekerjaan}}</option>
             <option value="relevan">Relevan</option>
-            <option value="tidak relevan">Tidak Relevan</option>
+            <option value="tinggi">Tinggi</option>
+            <option value="sedang">Sedang</option>
+            <option value="rendah">Rendah</option>
         </select>
     </div>
 

@@ -24,12 +24,26 @@
     </div>
 
     <div class="mb-3">
+        <label for="kontak" class="form-label">Kontak</label>
+        <input type="number" class="form-control @error('kontak')
+            is-invalid
+        @enderror" id="kontak" name="kontak" placeholder="Contoh : 0822xxxxxxxx" value="{{$bio->kontak}}">
+    </div>
+
+    <div class="mb-3">
         <label for="thnLulus" class="form-label">Tahun Lulus</label>
         <input type="text" class="form-control" id="thnLulus" name="thnLulus" placeholder="Contoh : 2015" value="{{$bio->thnLulus}}">
     </div>
 
     <div class="mb-3">
-        <label for="thnLulus" class="form-label">Tempat, Tanggal Lahir</label>
+        <label for="ipk" class="form-label">IPK</label>
+        <input type="number" class="form-control @error('ipk')
+            is-invalid
+        @enderror" id="ipk" name="ipk" placeholder="Contoh : 3.8" value="{{$bio->ipk}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Tempat, Tanggal Lahir</label>
         <div class="input-group">
             <input type="text" aria-label="First name" class="form-control" name="tempatLahir" placeholder="Tempat Lahir" value="{{$bio->tempatLahir}}">
             <input type="date" aria-label="Last name" class="form-control" name="tglLahir" value="{{$bio->tglLahir}}">

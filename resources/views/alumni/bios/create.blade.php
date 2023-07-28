@@ -23,8 +23,18 @@
     </div>
 
     <div class="mb-3">
+        <label for="kontak" class="form-label">Kontak</label>
+        <input type="number" class="form-control" id="kontak" name="kontak" placeholder="Contoh : 0822xxxxxxxx">
+    </div>
+
+    <div class="mb-3">
         <label for="thnLulus" class="form-label">Tahun Lulus</label>
         <input type="text" class="form-control" id="thnLulus" name="thnLulus" placeholder="Contoh : 2015">
+    </div>
+
+    <div class="mb-3">
+        <label for="ipk" class="form-label">IPK</label>
+        <input type="number" class="form-control" id="ipk" name="ipk" placeholder="Contoh : 3.8">
     </div>
 
     <div class="mb-3">

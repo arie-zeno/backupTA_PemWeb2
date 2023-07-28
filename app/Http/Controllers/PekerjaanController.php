@@ -16,7 +16,8 @@ class PekerjaanController extends Controller
     public function index()
     {
         return view("alumni.works.index", [
-            "pekerjaan" => Biodata::where('nim', auth()->user()->nim)->get(),
+            "pekerjaan" => Pekerjaan::where('nim', auth()->user()->nim)->get(),
+            "biodata" => Biodata::where('nim', auth()->user()->nim)->get()
         ]);
     }
 
@@ -93,8 +94,9 @@ class PekerjaanController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pekerjaan $pekerjaan)
+    public function destroy(string $id)
     {
-        //
+        Pekerjaan::destroy($id);
+        return redirect('/alumni/works')->with('success', 'Data Berhasil Dihapus');
     }
 }

@@ -22,6 +22,8 @@ class Biodata extends Model
             'agama',
             'pekerjaan',
             'kawin',
+            'ipk',
+            'kontak'
     ];
 
     protected $primaryKey = 'nim';

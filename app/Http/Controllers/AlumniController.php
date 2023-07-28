@@ -37,6 +37,8 @@ class AlumniController extends Controller
         $validatedData = $request->validate([
             'nim' => 'required',
             'name' => 'required',
+            'ipk' => 'required',
+            'kontak' => 'required',
             'foto' => 'image|file',
             'user_id' => "required",
             'thnLulus' => 'required',

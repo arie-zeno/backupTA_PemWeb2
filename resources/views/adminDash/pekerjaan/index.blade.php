@@ -21,7 +21,7 @@ use Carbon\Carbon;
 <!-- Tabel -->
 
 <h1 class="h2 text-primary">Tabel Pekerjaan</h1>
-<div class="container mx-4 my-4 p-3 shadow rounded">
+<div class=" mx-1 my-4 p-3 shadow rounded">
 <div class="d-flex justify-content-end flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 <div class="">
 
@@ -92,8 +92,8 @@ use Carbon\Carbon;
         <td>{{ $pekerjaan->kategori_pekerjaan }}</td>
         <td>{{ $pekerjaan->nama_pekerjaan }}</td>
         <td>{{ $pekerjaan->biodata->thnLulus }}</td>
-        <td>{{Carbon::parse($pekerjaan->tanggal_pekerjaan)->locale('id')->diffForHumans($pekerjaan->biodata->thnLulus . '0101')}} (kelulusan)</td>
-        <td>{{ $pekerjaan->gaji }}</td>
+        <td>{{Carbon::parse($pekerjaan->tanggal_pekerjaan)->locale('id')->diffForHumans($pekerjaan->biodata->thnLulus . '0101')}} (kelulusan) ~ {{$pekerjaan->tanggal_pekerjaan}}</td>
+        <td>{{number_format($pekerjaan->gaji,2,",",".") }}</td>
       <td>
         <form action="/admin/pekerjaan/{{$pekerjaan->id}}" method="post">
           @method('delete')

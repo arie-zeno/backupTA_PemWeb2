@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Exports\BiodataExport;
 use App\Imports\BiodataImport;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminBiodataController extends Controller
@@ -19,7 +20,11 @@ class AdminBiodataController extends Controller
     public function index()
     {
         return view("adminDash.biodata.index", [
-            "biodatas" => Biodata::all(),
+            "biodatas" => DB::table('biodatas')
+            ->orderBy('thnMasuk', 'asc')
+            ->orderBy('name', 'asc')
+            ->get()
+            // "biodatas" => Biodata::all(),
         ]);
     }
 

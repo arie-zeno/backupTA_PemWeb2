@@ -16,16 +16,18 @@ class BiodataImport implements ToModel
     {
         return new Biodata([
             'nim'     => $row[0],
-            'name'     => $row[1],
-            'user_id'     => $row[2],
-            'thnMasuk'     => $row[3],
-            'thnLulus'     => $row[4],
-            'tempatLahir'     => $row[5],
-            'tglLahir'     => $row[6],
-            'jk'     => $row[7],
-            'agama'     => $row[8],
-            'kawin'     => $row[9],
-            'pekerjaan'     => $row[10],
+            'kontak' => $row[1],
+            'name'     => $row[2],
+            'user_id'     => $row[3],
+            'thnMasuk'     => $row[4],
+            'thnLulus'     => $row[5],
+            'ipk'     => $row[6],
+            'tempatLahir'     => $row[7],
+            'tglLahir'     => $row[8],
+            'jk'     => $row[9],
+            'agama'     => $row[10],
+            'kawin'     => $row[11],
+            'pekerjaan'     => $row[12],
         ]);
     }
 }

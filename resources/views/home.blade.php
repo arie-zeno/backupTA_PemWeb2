@@ -141,12 +141,19 @@
             
 
             <div class="col-sm-6 my-5">      
-              <h3 class="text-center">Data Kelulusan Alumni</h3>     
+              <h3 class="text-center">Data Kelulusan </h3>     
                 <div>
                   <canvas id="chartKelulusan"></canvas>
                 </div>
                 <p class="text-secondary text-center">Total Alumni Mahasiswa Pendidikan Komputer : {{count($biodatas)}} </p>
-                {{-- <p>Rata rata lama kuliah {{$rata2_kuliah}} Tahun</p> --}}
+            </div>
+
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">Data Kelulusan Per Angkatan</h3>     
+                <div>
+                  <canvas id="chartKelulusanAngkatan"></canvas>
+                </div>
+                <p class="text-secondary text-center">Total Alumni Mahasiswa Pendidikan Komputer : {{count($biodatas)}} </p>
             </div>
 
             <div class="col-sm-6 my-5">      
@@ -171,7 +178,7 @@
                 <div>
                   <canvas id="chartRelevansi"></canvas>
                 </div>
-                <p class="text-secondary text-center">Sebanyak {{($pRelevan)}} alumni merasa relevan dan {{ ($pTRelevan) }} alumni merasa tidak relevan dengan pekerjaannya </p>
+                <p class="text-secondary text-center">Sebanyak {{($pRelevan[0])}} relevansi tinggi, {{ ($pRelevan[1]) }} relevansi sedang dan {{($pRelevan[2])}} relevansi rendah</p>
             </div>
 
             <div class="col-sm-6 my-5">      
@@ -187,7 +194,7 @@
                 <div>
                   <canvas id="chartGaji"></canvas>
                 </div>
-                <p class="text-secondary text-center">Rata-rata Gaji Alumni : Rp. {{($avgGaji)}} </p>
+                <p class="text-secondary text-center">Rata-rata Gaji Alumni : Rp. {{number_format($avgGaji,2,",",".")}} </p>
             </div>
 
           </div>    
@@ -226,11 +233,11 @@
         </ul>
       </footer>
     </div>
-
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             
             <script>
               const cKelulusan = document.getElementById('chartKelulusan'),
+                    cKelulusanAkt = document.getElementById('chartKelulusanAngkatan'),
                     cBekerja = document.getElementById('chartBekerja'),
                     cRelevansi = document.getElementById('chartRelevansi'),
                     cKategori = document.getElementById('chartKategori'),
@@ -242,8 +249,8 @@
                   belumBekerja = {{count($belumBekerja)}},
                   sudahBekerja = {{count($sudahBekerja)}},
                   dataNama = <?= $dataNama?>
+                
 
-                  console.log(dataNama)
             
               new Chart(cKelulusan, {
                 type: 'line',
@@ -258,15 +265,66 @@
                 },
 
                 options: {
-                  animations: {
-                    tension: {
-                      duration: 1000,
-                      easing: 'linear',
-                      from: 1,
-                      to: 0,
-                      loop: true
+                  scales: {
+                    y: { // defining min and max so hiding the dataset does not change scale range
+                      beginAtZero: true
                     }
+                  }
+                }
+              });
+
+              new Chart(cKelulusanAkt, {
+                type: 'line',
+                data: {
+                  labels: [2020, 2021, 2022,2023,2024,2025],
+                  datasets: [
+                    {
+                    label: 'Angkatan 2016',
+                    data: [{{$alumni2016[0]}},{{$alumni2016[1]}},{{$alumni2016[2]}},{{$alumni2016[3]}},{{$alumni2016[4]}},{{$alumni2016[5]}},{{$alumni2016[6]}},{{$alumni2016[7]}}],
+                    borderColor: '#36A2EB',
+                    borderWidth: 2,
                   },
+                  {
+                    label: 'Angkatan 2017',
+                    data: [{{$alumni2017[0]}},{{$alumni2017[1]}},{{$alumni2017[2]}},{{$alumni2017[3]}},{{$alumni2017[4]}},{{$alumni2017[5]}},{{$alumni2017[6]}},{{$alumni2017[7]}}],
+                    borderColor: 'red',
+                    borderWidth: 2,
+                  },
+                  {
+                    label: 'Angkatan 2018',
+                    data: [{{$alumni2018[0]}},{{$alumni2018[1]}},{{$alumni2018[2]}},{{$alumni2018[3]}},{{$alumni2018[4]}},{{$alumni2018[5]}},{{$alumni2018[6]}},{{$alumni2018[7]}}],
+                    borderColor: 'blue',
+                    borderWidth: 2,
+                  },
+                  {
+                    label: 'Angkatan 2019',
+                    data: [{{$alumni2019[0]}},{{$alumni2019[1]}},{{$alumni2019[2]}},{{$alumni2019[3]}},{{$alumni2019[4]}},{{$alumni2019[5]}},{{$alumni2019[6]}},{{$alumni2019[7]}}],
+                    borderColor: 'purple',
+                    borderWidth: 2,
+                  },
+                  {
+                    label: 'Angkatan 2020',
+                    data: [{{$alumni2020[0]}},{{$alumni2020[1]}},{{$alumni2020[2]}},{{$alumni2020[3]}},{{$alumni2020[4]}},{{$alumni2020[5]}},{{$alumni2020[6]}},{{$alumni2020[7]}}],
+                    borderColor: 'pink',
+                    borderWidth: 2,
+                  },
+                  {
+                    label: 'Angkatan 2021',
+                    data: [{{$alumni2021[0]}},{{$alumni2021[1]}},{{$alumni2021[2]}},{{$alumni2021[3]}},{{$alumni2021[4]}},{{$alumni2021[5]}},{{$alumni2021[6]}},{{$alumni2021[7]}}],
+                    borderColor: 'brown',
+                    borderWidth: 2,
+                  },
+                  {
+                    label: 'Angkatan 2022',
+                    data: [{{$alumni2022[0]}},{{$alumni2022[1]}},{{$alumni2022[2]}},{{$alumni2022[3]}},{{$alumni2022[4]}},{{$alumni2022[5]}},{{$alumni2022[6]}},{{$alumni2022[7]}}],
+                    borderColor: 'magenta',
+                    borderWidth: 2,
+                  }
+
+                ]
+                },
+
+                options: {
                   scales: {
                     y: { // defining min and max so hiding the dataset does not change scale range
                       beginAtZero: true
@@ -285,8 +343,7 @@
                     hoverOffset: 4,
                     backgroundColor: [
                       '#47A992',
-                      'red',
-                      '#36A2EB'
+                      'salmon'
                     ],
                   }]
                 }
@@ -315,15 +372,15 @@
               });
 
               new Chart(cRelevansi, {
-                type: 'pie',
+                type: 'doughnut',
                 data: {
-                  labels: ["Relevan", "Tidak Relevan"],
+                  labels: ["Tinggi", "Sedang", "Rendah"],
                   datasets: [{
-                    label: 'Alumni',
-                    data: [{{$pRelevan}}, {{$pTRelevan}} ],
+                    label: 'Jumlah',
+                    data: [{{$pRelevan[0]}}, {{$pRelevan[1]}}, {{$pRelevan[2]}} ],
                     hoverOffset: 4,
                     borderWidth:2,
-                    backgroundColor: ['#47A992', 'red']
+                    backgroundColor: ['#47A992', 'lightskyblue', 'red']
                   }]
                 },
               });
@@ -343,16 +400,15 @@
               });
 
               new Chart(cGaji, {
-                type: 'line',
+                type: 'bar',
                 data: {
-                  labels: ["1 ~ 3 Juta", "3 ~ 8 Juta", "8 ~ 13 Juta", "13 ~ 18 Juta", "18 ~ 25 Juta" ],
+                  labels: ["1 ~ 3 Juta", "3 ~ 8 Juta", "8 ~ 13 Juta", "13 ~ 18 Juta", "18 ~ 25 Juta", "25 ~ 50 Juta", "50 ~ 100 Juta", "100 ~ 250 Juta", "Lebih dari 250 Juta" ],
                   datasets: [{
                     label: 'Jumlah',
-                    data: [{{ $gajiAlumni[0]}}, {{ $gajiAlumni[1] }}, {{ $gajiAlumni[2] }}, {{ $gajiAlumni[3] }}, {{ $gajiAlumni[4] }} ],
+                    data: [{{ $gajiAlumni[0]}}, {{ $gajiAlumni[1] }}, {{ $gajiAlumni[2] }}, {{ $gajiAlumni[3] }}, {{ $gajiAlumni[4] }}, {{ $gajiAlumni[5] }}, {{ $gajiAlumni[6] }}, {{ $gajiAlumni[7] }}, {{ $gajiAlumni[8] }} ],
                     hoverOffset: 4,
                     borderWidth:2,
-                    borderColor:'lightblue',
-                    backgroundColor: ['lightblue', '#47A992', 'blue', 'brown', 'red']
+                    backgroundColor: ['lightblue', '#47A992', 'blue', 'brown', 'red','brown', 'green', 'black', 'salmon']
                   }]
                 },
                 options:{

@@ -73,7 +73,9 @@
       <th scope="col">No. </th>
       <th scope="col">Nama</th>
       <th scope="col">NIM</th>
+      <th scope="col">Kontak</th>
       <th scope="col">Tahun Lulus</th>
+      <th scope="col">IPK</th>
       <th scope="col">Jenis Kelamin</th>
       <th scope="col">Agama</th>
       <th scope="col">Status Perkawinan</th>
@@ -88,7 +90,9 @@
         <th scope="row">{{ $loop->iteration }}</th>
         <td>{{ $biodata->name }}</td>
         <td>{{ $biodata->nim }}</td>
+        <td>{{ $biodata->kontak }}</td>
         <td>{{ $biodata->thnLulus }}</td>
+        <td>{{ $biodata->ipk }}</td>
         <td>{{ $biodata->jk }}</td>
         <td>{{ $biodata->agama }}</td>
         <td>{{ $biodata->kawin }}</td>

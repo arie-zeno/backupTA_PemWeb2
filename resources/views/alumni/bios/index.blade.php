@@ -46,6 +46,9 @@
         <label class="text-secondary" for="">NIM</label>
         <h6 class="fw-bold">{{$biodata->nim}}</h6>
 
+        <label class="text-secondary" for="">Kontak</label>
+        <h6 class="fw-bold">{{$biodata->kontak}}</h6>
+
         <label class="text-secondary" for="">Tempat Tanggal Lahir</label>
         <h6 class="fw-bold">{{$biodata->tempatLahir}}, {{$biodata->tglLahir}}</h6>
 
@@ -67,6 +70,9 @@
         
         <label class="text-secondary" for="">Lama Masa Studi</label>
         <h6 class="fw-bold">{{$biodata->thnLulus - $biodata->thnMasuk}} Tahun</h6>
+
+        <label class="text-secondary" for="">IPK</label>
+        <h6 class="fw-bold">{{$biodata->ipk}}</h6>
         
         <h6 class="mt-5">Edit data <a href="/alumni/bios/{{ $biodata->nim }}/edit">biodata</a> </h6>
         

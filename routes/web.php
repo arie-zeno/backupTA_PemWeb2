@@ -258,6 +258,7 @@ Route::get('/', function () {
     return view('home', [
         "title" => "home",
         "biodatas" => $biodatas,
+        "pekerjaans" => $pRelevan,
         "dataLamaKuliah" => json_encode($dataKuliah),
         "rata2_kuliah" => $avg,
         "kelulusan_2020" => $kelulusan_2020,

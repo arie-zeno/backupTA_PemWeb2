@@ -24,25 +24,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
-    <script>
 
-      let navbar = document.getElementById("navbar");
-      let navbarNav = document.getElementById("navbar-nav");
-      window.addEventListener("scroll", () =>{
-        console.log(window.scrollY)
-        if(window.scrollY > 100){
-          // navbar.style.backgroundColor = "#eca457"
-          navbar.style.backgroundColor = "#ffffff88"
-          navbar.style.boxShadow = "2px 2px 2px black"
-          navbar.style.transform = "translateY(0)"
-        }else {
-          navbar.style.backgroundColor = "transparent"
-          navbar.style.boxShadow = "none"
-          navbar.style.transform = "translateY(-120px)"
-          
-        }
-      });
-
-    </script>
   </body>
 </html>

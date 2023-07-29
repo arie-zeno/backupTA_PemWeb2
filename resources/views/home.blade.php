@@ -164,6 +164,13 @@
                 <p class="text-secondary text-center">Rata rata lama masa study {{$rata2_kuliah}} Tahun</p>
             </div>
 
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">IPK Alumni </h3>     
+                <div>
+                  <canvas id="chartIPK"></canvas>
+                </div>
+                <p class="text-secondary text-center">Rata rata IPK alumni : {{$avgIPK}} </p>
+            </div>
 
             <div class="col-sm-6 my-5">      
               <h3 class="text-center">Status Pekerjaan</h3>     
@@ -242,6 +249,7 @@
                     cRelevansi = document.getElementById('chartRelevansi'),
                     cKategori = document.getElementById('chartKategori'),
                     cGaji = document.getElementById('chartGaji'),
+                    cIPK = document.getElementById('chartIPK'),
                     cLamaKuliah = document.getElementById('chartLamaKuliah');
       
                     
@@ -371,6 +379,27 @@
                 }
               });
 
+              new Chart(cIPK, {
+                type: 'bar',
+                data: {
+                  labels: ["2.4 ~ 2.7", "2.7 ~ 3.0", "3.0 ~ 3.3", "3.3 ~ 3.6", "3.6 ~ 3.9"],
+                  datasets: [{
+                    label: 'Alumni',
+                    data: [{{$ipk[0]}}, {{$ipk[1]}}, {{$ipk[2]}}, {{$ipk[3]}}, {{$ipk[4]}} ],
+                    hoverOffset: 4,
+                    borderWidth:2,
+                    backgroundColor: ['#47A992', '#36A2EB', '#B70404']
+                  }],
+                },
+                options:{
+                  scales: {
+                    y: { // defining min and max so hiding the dataset does not change scale range
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+
               new Chart(cRelevansi, {
                 type: 'doughnut',
                 data: {
@@ -422,4 +451,25 @@
 
             </script>
         @endif
+        <script>
+
+let navbar = document.getElementById("navbar");
+let navbarNav = document.getElementById("navbar-nav");
+window.addEventListener("scroll", () =>{
+  console.log(window.scrollY)
+  if(window.scrollY > 100){
+    // navbar.style.backgroundColor = "#eca457"
+    navbar.style.backgroundColor = "#ffffff88"
+    navbar.style.boxShadow = "2px 2px 2px black"
+    navbar.style.transform = "translateY(0)"
+  }else {
+    navbar.style.backgroundColor = "transparent"
+    navbar.style.boxShadow = "none"
+    navbar.style.transform = "translateY(-120px)"
+    
+  }
+});
+
+</script>
 @endsection
+

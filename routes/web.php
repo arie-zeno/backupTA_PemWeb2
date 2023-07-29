@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PekerjaanController;
+use App\Http\Controllers\PencarianController;
 use App\Http\Controllers\AlumniPostController;
 use App\Http\Controllers\AdminBiodataController;
 use App\Http\Controllers\AlumniBiodataController;
@@ -49,12 +50,27 @@ Route::get('/', function () {
     $alumniAngkatan2020 = [0,0,0,0,0,0,0,0];
     $alumniAngkatan2021 = [0,0,0,0,0,0,0,0];
     $alumniAngkatan2022 = [0,0,0,0,0,0,0,0];
+    $ipk = [0,0,0,0,0];
+    $totalIPK = 0;
 
     foreach ($biodatas as $biodata) {
         $selisih = $biodata->thnLulus - $biodata->thnMasuk;
         $dataKuliah[] = $selisih;
         $dataNama[] = $biodata->name; 
         $total += $selisih;
+
+        $totalIPK += $biodata->ipk;
+        if($biodata->ipk > 2.4 && $biodata->ipk <= 2.7){
+            $ipk[0] += 1;
+        }else if($biodata->ipk > 2.7 && $biodata->ipk <= 3.0){
+            $ipk[1] += 1;
+        }else if($biodata->ipk > 3.0 && $biodata->ipk <= 3.3){
+            $ipk[2] += 1;
+        }else if($biodata->ipk > 3.3 && $biodata->ipk <= 3.6){
+            $ipk[3] += 1;
+        }else if($biodata->ipk > 3.6 && $biodata->ipk <= 3.9){
+            $ipk[4] += 1;
+        }
 
         if($selisih > 6){
             $warnaBar[] = "#B70404";
@@ -288,6 +304,8 @@ Route::get('/', function () {
         "alumni2020" => $alumniAngkatan2020,
         "alumni2021" => $alumniAngkatan2021,
         "alumni2022" => $alumniAngkatan2022,
+        "ipk" => $ipk,
+        "avgIPK" => $totalIPK/count($biodatas),
         
     ]);
 }else{
@@ -300,6 +318,7 @@ Route::get('/', function () {
 }
 });
 
+Route::get('/search', [PencarianController::class, "index"]);
 
 Route::get('/login', [LoginController::class, "index"])->name('login')->middleware("guest");
 Route::post('/login', [LoginController::class, "authenticate"]);

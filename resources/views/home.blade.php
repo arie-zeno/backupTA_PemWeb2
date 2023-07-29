@@ -98,19 +98,25 @@
 </style>
 @section("container")
     <div class="container-fluid container-home" style="position:relative">
-      <div style="background-color: rgba(0, 0, 0, 0.356); position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1; ">
+      <div style="background-color:rgba(0, 0, 0, 0.385); position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1; ">
 
       </div>
       
       <div class="container ">
-        <div class=" row justify-content-between align-items-center" style="height: 100vh">
-            <div class="col-sm-6 ">
-                <!-- <img class="img-fluid rounded" src="/img/tracer.png" alt=""> -->
-            </div>
-
-            <div class="col-sm-5 welcome " style="z-index: 2;">
-                <h1 class="fw-bold text-white text-shadow">Selamat Datang Di Website <span> Tracer Study</span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat</h1>
-                <p class="text-white fs-5 mt-4">Mari sukseskan pelaksanaan <span>tracer study </span>Prodi Pendidikan Komputer Universitas Lambung Mangkurat.</p>
+        <div class=" row justify-content-between align-items-center" style="height: 100vh ;">
+          
+          
+          <div class="col-sm-6 " style="z-index: 2; ">
+            
+        </div>
+        <div class="col-sm-5 welcome " style="z-index: 2;/* From https://css.glass */
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 16px;
+          box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+          backdrop-filter: blur(5px);
+          -webkit-backdrop-filter: blur(5px);">
+              <h1 class="fw-bold text-white text-shadow">Selamat Datang Di Website <span> Tracer Study</span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat</h1>
+              <p class="text-white fs-5 mt-4">Mari sukseskan pelaksanaan <span>tracer study </span>Prodi Pendidikan Komputer Universitas Lambung Mangkurat.</p>
             </div>
         </div>
 

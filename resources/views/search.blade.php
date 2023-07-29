@@ -118,7 +118,7 @@ use Carbon\Carbon;
                   </div>
                 
               </div>
-            <div class="col-sm-7 ">
+            <div class="col-sm-5 ">
               @if ($keyword == "")
               <img class="img-fluid" src="/img/tracer.png" alt="">
               @else
@@ -130,7 +130,7 @@ use Carbon\Carbon;
                     
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{$biodata->name}}
-                    <button class=" btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#detal{{$biodata->nim}}">Lihat</button>
+                    <button class=" btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#detal{{$biodata->nim}}"> Lihat</button>
                   </li>
 
                     {{-- modal --}}
@@ -240,8 +240,6 @@ use Carbon\Carbon;
                             
                                     
                                 </div>
-                              @else
-                                <p>tidak bekerja</p>
                               @endif
                             </div>
                         

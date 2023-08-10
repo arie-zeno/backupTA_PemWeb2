@@ -1,8 +1,9 @@
 @extends("alumni.layouts.main")
 @section("container")
+<meta name="csrf-token" content="{{csrf_token()}}"/>
 <h1>Isi Biodata</h1>
 
-<div class="col-sm-6">
+<div class="col-sm-6 pb-5">
 
     <form method="POST" action="/alumni/bios" enctype="multipart/form-data">
         @csrf
@@ -24,7 +25,7 @@
 
     <div class="mb-3">
         <label for="kontak" class="form-label">Kontak</label>
-        <input type="number" class="form-control" id="kontak" name="kontak" placeholder="Contoh : 0822xxxxxxxx">
+        <input type="number" class="form-control" id="kontak" name="kontak" placeholder="Contoh : 0822xxxxxxxx" >
     </div>
 
     <div class="mb-3">
@@ -44,6 +45,39 @@
             <input type="date" aria-label="Last name" class="form-control" name="tglLahir">
         </div>
     </div>
+
+    <label class="form-label" >Alamat</label>
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="provinsi">Provinsi</label>
+        <select class="form-select" id="provinsi">
+          <option selected>--Pilih Provinsi--</option>
+          @foreach ($provinces as $provinsi )  
+          <option value="{{$provinsi->id}}">{{$provinsi->name}}</option>
+          @endforeach
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="kabupaten">Kabupaten</label>
+        <select class="form-select" id="kabupaten">
+
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="kecamatan">Kecamatan</label>
+        <select class="form-select" id="kecamatan">
+
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="kelurahan">Kelurahan</label>
+        <select class="form-select" id="kelurahan">
+
+        </select>
+      </div>
+      
 
     <div class="mb-3">
         <label for="jk" class="form-label">Jenis Kelamin</label>
@@ -88,4 +122,75 @@
     <button type="submit" class="btn btn-primary">Selesai</button>
 </form>
 </div>
+
+
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+<script>
+    $(function(){
+        $.ajaxSetup({
+            headers: {'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')}
+        });
+    });
+
+    $(function(){
+        $('#provinsi').on('change', () => {
+            let id_provinsi = $('#provinsi').val();
+            
+            $.ajax({
+                type : "POST",
+                url : "{{route('getKabupaten')}}",
+                data : {id_provinsi:id_provinsi},
+                cache : false,
+
+                success: function(msg){
+                    $('#kabupaten').html(msg);
+                    $('#kecamatan').html('');
+                    $('#kelurahan').html('');
+                },
+                error: (data) => {
+                    console.log('error', data)
+                }
+            })
+        })
+
+        $('#kabupaten').on('change', () => {
+            let id_kabupaten = $('#kabupaten').val();
+            
+            $.ajax({
+                type : "POST",
+                url : "{{route('getKecamatan')}}",
+                data : {id_kabupaten:id_kabupaten},
+                cache : false,
+
+                success: function(msg){
+                    $('#kecamatan').html(msg);
+                    $('#kelurahan').html('');
+                },
+                error: (data) => {
+                    console.log('error', data)
+                }
+            })
+        })
+
+        $('#kecamatan').on('change', () => {
+            let id_kecamatan = $('#kecamatan').val();
+            
+            $.ajax({
+                type : "POST",
+                url : "{{route('getKelurahan')}}",
+                data : {id_kecamatan:id_kecamatan},
+                cache : false,
+
+                success: function(msg){
+                    $('#kelurahan').html(msg);
+                },
+                error: (data) => {
+                    console.log('error', data)
+                }
+            })
+        })
+    })
+</script>

@@ -6,6 +6,11 @@ use App\Models\Biodata;
 use Illuminate\Http\Request;
 use App\Http\Controllers;
 
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
+
 class AlumniController extends Controller
 {
     /**
@@ -24,9 +29,12 @@ class AlumniController extends Controller
      */
     public function create()
     {
-        return view("alumni.bios.create");
+        $provinces = Province::all();
+        return view("alumni.bios.create", compact('provinces'));
         
     }
+    
+
 
     /**
      * Store a newly created resource in storage.

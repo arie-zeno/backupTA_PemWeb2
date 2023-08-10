@@ -8,6 +8,8 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Barryvdh\DomPDF\PDF;
 use Illuminate\Broadcasting\BroadcastServiceProvider;
+// Provider Lain
+// AzisHapidin\IndoRegion\IndoRegionServiceProvider::class;
 return [
 
     /*

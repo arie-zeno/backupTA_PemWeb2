@@ -11,9 +11,11 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PekerjaanController;
 use App\Http\Controllers\PencarianController;
 use App\Http\Controllers\AlumniPostController;
+use App\Http\Controllers\IndoRegionController;
 use App\Http\Controllers\AdminBiodataController;
 use App\Http\Controllers\AlumniBiodataController;
 use App\Http\Controllers\AdminPekerjaanController;
+use App\Http\Controllers\DependantDropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -333,6 +335,9 @@ Route::get('/alumni', function () {
 });
 
 Route::resource('/alumni/bios', AlumniController::class)->middleware("auth");
+Route::post('/getKabupaten', [IndoRegionController::class, "getKabupaten"])->name('getKabupaten')->middleware("auth");
+Route::post('/getKecamatan', [IndoRegionController::class, "getKecamatan"])->name('getKecamatan')->middleware("auth");
+Route::post('/getKelurahan', [IndoRegionController::class, "getKelurahan"])->name('getKelurahan')->middleware("auth");
 // Route::get('/alumni/works/{work:id}', [PekerjaanController::class, 'show']); 
 // Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
 Route::resource('/alumni/works', PekerjaanController::class)->middleware("auth");
@@ -358,3 +363,4 @@ Route::get('biodata-export', [AdminBiodataController::class, 'fileExport'])->nam
 Route::get('pekerjaan-import-export', [AdminPekerjaanController::class, 'fileImportExport']);
 Route::post('pekerjaan-import', [AdminPekerjaanController::class, 'fileImport'])->name('pekerjaan-import');
 Route::get('pekerjaan-export', [AdminPekerjaanController::class, 'fileExport'])->name('pekerjaan-export');
+

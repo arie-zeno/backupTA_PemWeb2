@@ -74,7 +74,8 @@
       <th scope="col">Nama</th>
       <th scope="col">NIM</th>
       <th scope="col">Kontak</th>
-      <th scope="col">Tahun Lulus</th>
+      <th scope="col">Tanggal Lulus</th>
+      <th scope="col">Lama Studi</th>
       <th scope="col">IPK</th>
       <th scope="col">Jenis Kelamin</th>
       <th scope="col">Agama</th>
@@ -91,7 +92,28 @@
         <td>{{ $biodata->name }}</td>
         <td>{{ $biodata->nim }}</td>
         <td>{{ $biodata->kontak }}</td>
-        <td>{{ $biodata->thnLulus }}</td>
+        <td>{{date('d F Y', strtotime($biodata->tglLulus))}}</td>
+        @php
+                    $tgl2 = new DateTime($biodata->tglLulus);
+                    $tgl1 = new DateTime($biodata->tglMasuk);
+                    $jarak = $tgl2->diff($tgl1);
+        
+                    $str = '';
+        
+                    if($jarak->y != 0){
+                        $str .= $jarak->y . ' Tahun ';
+                    }
+        
+                    if($jarak->m != 0){
+                        $str .= $jarak->m . ' Bulan ';
+                    }
+        
+                    if($jarak->d != 0){
+                        $str .= $jarak->d . ' Hari ';
+                    }
+        
+                @endphp
+        <td>{{ $str }}</td>
         <td>{{ $biodata->ipk }}</td>
         <td>{{ $biodata->jk }}</td>
         <td>{{ $biodata->agama }}</td>

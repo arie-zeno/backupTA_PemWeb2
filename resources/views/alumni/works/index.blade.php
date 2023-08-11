@@ -39,7 +39,7 @@ use Carbon\Carbon;
                     <h6 class="fw-bold">{{$work->biodata->name}}</h6>
             
                     <label class="text-secondary" for="">Kategori Pekerjaan</label>
-                    <h6 class="fw-bold">{{$work->kategori_pekerjaan}}</h6>
+                    <h6 class="fw-bold">{{$work->kategori_pekerjaan1 == 1 ? 'Kependidikan': ''}}, {{$work->kategori_pekerjaan2 == 1 ? 'IT': ''}}, {{$work->kategori_pekerjaan3 == 1 ? 'Wirausaha': ''}}</h6>
             
                     <label class="text-secondary" for="">Bekerja Sebagai</label>
                     <h6 class="fw-bold">{{$work->nama_pekerjaan}}</h6>
@@ -47,13 +47,38 @@ use Carbon\Carbon;
                     <label class="text-secondary" for="">Alamat Pekerjaan</label>
                     <h6 class="fw-bold">{{$work->tempat_pekerjaan}}</h6>
             
-                    <label class="text-secondary" for="">Tahun Kelulusan</label>
-                    <h6 class="fw-bold">{{$work->biodata->thnLulus}}</h6>
+                    <label class="text-secondary" for="">Tanggal Kelulusan</label>
+                    <h6 class="fw-bold">{{date('d F Y', strtotime($work->biodata->tglLulus))}}</h6>
             
             
                     <label class="text-secondary" for="">Mulai Bekerja</label>
-                    <h6 class="fw-bold">{{Carbon::parse($work->tanggal_pekerjaan)->diffForHumans($work->biodata->thnLulus . '0101')}} kelulusan ~ {{$work->tanggal_pekerjaan}} </h6>
-                    {{-- <h6 class="fw-light">{{$work->tanggal_pekerjaan}}</h6> --}}
+                    @php
+                    $tgl2 = new DateTime($work->tanggal_pekerjaan);
+                    $tgl1 = new DateTime($work->biodata->tglLulus);
+                    $jarak = $tgl2->diff($tgl1);
+        
+                    $str = '';
+        
+                    if($jarak->y != 0){
+                        $str .= $jarak->y . ' Tahun ';
+                    }
+        
+                    if($jarak->m != 0){
+                        $str .= $jarak->m . ' Bulan ';
+                    }
+        
+                    if($jarak->d != 0){
+                        $str .= $jarak->d . ' Hari ';
+                    }
+
+                    if($tgl1 > $tgl2){
+                        $str .= "Sebelum Kelulusan";
+                    }else{
+                        $str .= "Setelah Kelulusan";
+                    }
+        
+                @endphp
+                    <h6 class="fw-bold">{{$str}} ~ {{date('d F Y', strtotime($work->tanggal_pekerjaan))}}</h6>
             
             
                     <label class="text-secondary" for="">Kisaran Gaji</label>

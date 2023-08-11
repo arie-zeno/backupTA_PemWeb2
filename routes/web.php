@@ -56,7 +56,10 @@ Route::get('/', function () {
     $totalIPK = 0;
 
     foreach ($biodatas as $biodata) {
-        $selisih = $biodata->thnLulus - $biodata->thnMasuk;
+        $tgl1 = new DateTime($biodata->tglMasuk);
+        $tgl2 = new DateTime($biodata->tglLulus);
+        $jarak = $tgl2->diff($tgl1);
+        $selisih = $jarak->y;
         $dataKuliah[] = $selisih;
         $dataNama[] = $biodata->name; 
         $total += $selisih;
@@ -85,116 +88,120 @@ Route::get('/', function () {
             $kelulusanKurang4Thn[] = $selisih;
         }
 
-        if($biodata->thnLulus == 2020){
+        $tahunLulus = explode('-', $biodata->tglLulus);
+        $tahunLulus = $tahunLulus[0];
+        if($tahunLulus == 2020){
             $kelulusan_2020[] = $biodata->nim;
-        }else if($biodata->thnLulus == 2021){
+        }else if($tahunLulus == 2021){
             $kelulusan_2021[] = $biodata->nim;
-        }else if($biodata->thnLulus == 2022){
+        }else if($tahunLulus == 2022){
             $kelulusan_2022[] = $biodata->nim;
-        }else if($biodata->thnLulus == 2023){
+        }else if($tahunLulus == 2023){
             $kelulusan_2023[] = $biodata->nim;
-        }else if($biodata->thnLulus == 2024){
+        }else if($tahunLulus == 2024){
             $kelulusan_2024[] = $biodata->nim;
-        }else if($biodata->thnLulus == 2025){
+        }else if($tahunLulus == 2025){
             $kelulusan_2025[] = $biodata->nim;
         }
 
-        if($biodata->thnMasuk == 2016){
-            if($biodata->thnLulus == 2020){
+        $tahunMasuk = explode('-', $biodata->tglMasuk);
+        $tahunMasuk = $tahunMasuk[0];
+        if($tahunMasuk == 2016){
+            if($tahunLulus == 2020){
                 $alumniAngkatan2016[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2016[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2016[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2016[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2016[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2016[5] += 1;
             }            
-        }else if($biodata->thnMasuk == 2017){
-            if($biodata->thnLulus == 2021){
+        }else if($tahunMasuk == 2017){
+            if($tahunLulus == 2021){
                 $alumniAngkatan2017[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2017[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2017[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2017[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2017[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2017[5] += 1;
             }   
-        }else if($biodata->thnMasuk == 2018){
-            if($biodata->thnLulus == 2021){
+        }else if($tahunMasuk == 2018){
+            if($tahunLulus == 2021){
                 $alumniAngkatan2018[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2018[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2018[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2018[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2018[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2018[5] += 1;
             } 
-        }else if($biodata->thnMasuk == 2019){
-            if($biodata->thnLulus == 2021){
+        }else if($tahunMasuk == 2019){
+            if($tahunLulus == 2021){
                 $alumniAngkatan2019[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2019[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2019[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2019[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2019[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2019[5] += 1;
             } 
-        }else if($biodata->thnMasuk == 2020){
-            if($biodata->thnLulus == 2021){
+        }else if($tahunMasuk == 2020){
+            if($tahunLulus == 2021){
                 $alumniAngkatan2020[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2020[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2020[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2020[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2020[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2020[5] += 1;
             } 
-        }else if($biodata->thnMasuk == 2021){
-            if($biodata->thnLulus == 2021){
+        }else if($tahunMasuk == 2021){
+            if($tahunLulus == 2021){
                 $alumniAngkatan2021[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2021[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2021[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2021[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2021[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2021[5] += 1;
             } 
-        }else if($biodata->thnMasuk == 2022){
-            if($biodata->thnLulus == 2021){
+        }else if($tahunMasuk == 2022){
+            if($tahunLulus == 2021){
                 $alumniAngkatan2022[0] += 1;
-            }else if($biodata->thnLulus == 2021){
+            }else if($tahunLulus == 2021){
                 $alumniAngkatan2022[1] += 1;
-            }else if($biodata->thnLulus == 2022){
+            }else if($tahunLulus == 2022){
                 $alumniAngkatan2022[2] += 1;
-            }else if($biodata->thnLulus == 2023){
+            }else if($tahunLulus == 2023){
                 $alumniAngkatan2022[3] += 1;
-            }else if($biodata->thnLulus == 2024){
+            }else if($tahunLulus == 2024){
                 $alumniAngkatan2022[4] += 1;
-            }else if($biodata->thnLulus == 2025){
+            }else if($tahunLulus == 2025){
                 $alumniAngkatan2022[5] += 1;
             } 
         }
@@ -202,16 +209,16 @@ Route::get('/', function () {
    
 
     $pRelevan = [0,0,0];
-    $kategoriPekerjaan1 = 0;
-    $kategoriPekerjaan2 = 0;
-    $kategoriPekerjaan3 = 0;
-    $kategoriPekerjaan4 = 0;
-    $kategoriPekerjaan5 = 0;
+    $kategoriPekerjaan1 = [];
+    $kategoriPekerjaan2 = [];
+    $kategoriPekerjaan3 = [];
+    $kategoriPekerjaan4 = [];
 
     $gajiAlumni = [0,0,0,0,0,0,0,0,0];
 
     $totalGaji = 0;
-
+    $rentangKerja = [0,0,0,0,0,0,0];
+    $totalTahunKerja = 0;
     $nim = [];
     for($i = count($pekerjaans)-1; $i > -1; $i--){
         if(!(in_array($pekerjaans[$i]->nim, $nim))){
@@ -225,16 +232,43 @@ Route::get('/', function () {
                 $pRelevan[2] += 1;
             }
 
-            if($pekerjaans[$i]->kategori_pekerjaan == "IT Non kependidikan"){
-                $kategoriPekerjaan1 += 1;
-            }else if($pekerjaans[$i]->kategori_pekerjaan == "IT kependidikan"){
-                $kategoriPekerjaan2 += 1;            
-            }else if($pekerjaans[$i]->kategori_pekerjaan == "Kependidikan IT"){
-                $kategoriPekerjaan3 += 1;
-            }else if($pekerjaans[$i]->kategori_pekerjaan == "Kependidikan Non IT"){
-                $kategoriPekerjaan4 += 1;
-            }else if($pekerjaans[$i]->kategori_pekerjaan == "Non IT Non Kependidikan"){
-                $kategoriPekerjaan5 += 1;
+
+            if($pekerjaans[$i]->kategori_pekerjaan1 == 1){
+                $kategoriPekerjaan1[] = $pekerjaans[$i]->biodata->nim;
+            }
+            if($pekerjaans[$i]->kategori_pekerjaan2 == 1){
+                $kategoriPekerjaan2[] = $pekerjaans[$i]->biodata->nim;
+            }
+            if($pekerjaans[$i]->kategori_pekerjaan3 == 1){
+                $kategoriPekerjaan3[] = $pekerjaans[$i]->biodata->nim;
+            }
+
+            
+            $tglKerja1 = new DateTime($pekerjaans[$i]->biodata->tglLulus);
+            $tglKerja2 = new DateTime($pekerjaans[$i]->tanggal_pekerjaan);
+            $jarakKerja = $tglKerja2->diff($tglKerja1);
+
+            if($jarakKerja->y >= 6){
+                $rentangKerja[6] += 1;
+                $totalTahunKerja += $jarakKerja->y;
+            }else if($jarakKerja->y >= 5 && $jarakKerja->y < 6){
+                $rentangKerja[5] += 1;
+                $totalTahunKerja += $jarakKerja->y;
+            }else if($jarakKerja->y >= 4 && $jarakKerja->y < 5){
+                $rentangKerja[4] += 1;
+                $totalTahunKerja += $jarakKerja->y;
+            }else if($jarakKerja->y >= 3 && $jarakKerja->y < 4){
+                $rentangKerja[3] += 1;
+                $totalTahunKerja += $jarakKerja->y;
+            }else if($jarakKerja->y >= 2 && $jarakKerja->y < 3){
+                $rentangKerja[2] += 1;
+                $totalTahunKerja += $jarakKerja->y;
+            }else if($jarakKerja->y >= 1 && $jarakKerja->y < 2){
+                $rentangKerja[1] += 1;
+                $totalTahunKerja += $jarakKerja->y;
+            }else if($jarakKerja->y < 1){
+                $rentangKerja[0] += 1;
+                $totalTahunKerja += $jarakKerja->y;
             }
 
             if($pekerjaans[$i]->gaji >= 1000000 && $pekerjaans[$i]->gaji <= 3000000){
@@ -296,7 +330,6 @@ Route::get('/', function () {
         "kategoriPekerjaan2" => $kategoriPekerjaan2,
         "kategoriPekerjaan3" => $kategoriPekerjaan3,
         "kategoriPekerjaan4" => $kategoriPekerjaan4,
-        "kategoriPekerjaan5" => $kategoriPekerjaan5,
         "gajiAlumni" => $gajiAlumni,
         "avgGaji" => $avgGaji,
         "alumni2016" => $alumniAngkatan2016,
@@ -306,8 +339,10 @@ Route::get('/', function () {
         "alumni2020" => $alumniAngkatan2020,
         "alumni2021" => $alumniAngkatan2021,
         "alumni2022" => $alumniAngkatan2022,
+        "rentangKerja" => $rentangKerja,
         "ipk" => $ipk,
         "avgIPK" => $totalIPK/count($biodatas),
+        "avgRKerja" => $totalTahunKerja/count(Biodata::where("pekerjaan", "sudah")->get()),
         
     ]);
 }else{
@@ -327,7 +362,7 @@ Route::post('/login', [LoginController::class, "authenticate"]);
 Route::post('/logout', [LoginController::class, "logout"]);
 
 
-Route::get('/register', [RegisterController::class, "index"])->middleware("guest");
+Route::get('/register', [RegisterController::class, "index"])->middleware("auth");
 Route::post('/register', [RegisterController::class, "store"]);
 
 Route::get('/alumni', function () {

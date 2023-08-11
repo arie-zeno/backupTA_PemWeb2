@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('pekerjaans', function (Blueprint $table) {
             $table->id();
             $table->foreignId("nim");
-            $table->string("kategori_pekerjaan");
+            $table->string("kategori_pekerjaan1");
+            $table->string("kategori_pekerjaan2");
+            $table->string("kategori_pekerjaan3");
             $table->string("nama_pekerjaan");
             $table->string("tempat_pekerjaan")->nullable();
             $table->date("tanggal_pekerjaan");

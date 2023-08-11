@@ -35,14 +35,16 @@ class PekerjaanController extends Controller
     public function store(StorePekerjaanRequest $request)
     {
  
-
+    
         $validatedData = $request->validate([
             'nim' => 'required',
-            'kategori_pekerjaan' => 'required',
             'nama_pekerjaan' => "required",
             'tempat_pekerjaan' => 'required',
             'tanggal_pekerjaan' => 'required',
             'gaji' => 'required',
+            'kategori_pekerjaan1' => 'nullable',
+            'kategori_pekerjaan2' => 'nullable',
+            'kategori_pekerjaan3' => 'nullable',
             'relevansi_pekerjaan' => 'required'
         ]);
 
@@ -77,7 +79,9 @@ class PekerjaanController extends Controller
     {
         $validatedData = $request->validate([
             'nim' => 'required',
-            'kategori_pekerjaan' => 'required',
+            'kategori_pekerjaan1' => 'nullable',
+            'kategori_pekerjaan2' => 'nullable',
+            'kategori_pekerjaan3' => 'nullable',
             'nama_pekerjaan' => "required",
             'tempat_pekerjaan' => 'required',
             'tanggal_pekerjaan' => 'required',

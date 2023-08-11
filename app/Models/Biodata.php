@@ -14,16 +14,22 @@ class Biodata extends Model
         'user_id',
         'foto',
             'nim',
-            'thnLulus',
-            'thnMasuk',
+            'tglLulus',
+            'tglMasuk',
             'jk',
             'tempatLahir',
+            'kelurahan',
+            'kecamatan',
+            'kabupaten',
+            'provinsi',
             'tglLahir',
             'agama',
             'pekerjaan',
             'kawin',
             'ipk',
-            'kontak'
+            'kontak',
+            'noIjazah'
+
     ];
 
     protected $primaryKey = 'nim';

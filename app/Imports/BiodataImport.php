@@ -19,8 +19,8 @@ class BiodataImport implements ToModel
             'kontak' => $row[1],
             'name'     => $row[2],
             'user_id'     => $row[3],
-            'thnMasuk'     => $row[4],
-            'thnLulus'     => $row[5],
+            'tglMasuk'     => $row[4],
+            'tglLulus'     => $row[5],
             'ipk'     => $row[6],
             'tempatLahir'     => $row[7],
             'tglLahir'     => $row[8],
@@ -28,6 +28,11 @@ class BiodataImport implements ToModel
             'agama'     => $row[10],
             'kawin'     => $row[11],
             'pekerjaan'     => $row[12],
+            'kelurahan'     => $row[13],
+            'kecamatan'     => $row[14],
+            'kabupaten'     => $row[15],
+            'provinsi'     => $row[16],
+            'noIjazah'     => $row[17],
         ]);
     }
 }

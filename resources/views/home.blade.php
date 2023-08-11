@@ -1,4 +1,5 @@
 @extends("layouts.main")
+
 <style>
     span{
         color: #eca457;
@@ -183,7 +184,7 @@
                 <div>
                   <canvas id="chartBekerja"></canvas>
                 </div>
-                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
+                <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja {{count($sudahBekerja)}}, yang belum bekerja {{count($belumBekerja)}} </p>
             </div>
 
             <div class="col-sm-6 my-5">      
@@ -191,13 +192,14 @@
                 <div>
                   <canvas id="chartRelevansi"></canvas>
                 </div>
-                <p class="text-secondary text-center">Sebanyak {{($pRelevan[0])}} relevansi tinggi, {{ ($pRelevan[1]) }} relevansi sedang dan {{($pRelevan[2])}} relevansi rendah</p>
+                <p class="text-secondary text-center"> {{($pRelevan[0])}} relevansi tinggi, {{ ($pRelevan[1]) }} relevansi sedang dan {{($pRelevan[2])}} relevansi rendah</p>
             </div>
 
-            <div class="col-sm-6 my-5">      
+
+            <div class="col-sm-12 my-5">      
               <h3 class="text-center">Kategori Pekerjaan</h3>     
                 <div>
-                  <canvas id="chartKategori"></canvas>
+                  <canvas id="chartKategori2"></canvas>
                 </div>
                 <p class="text-secondary text-center">Jumlah Alumni yang sudah bekerja : {{count($sudahBekerja)}} </p>
             </div>
@@ -209,6 +211,15 @@
                 </div>
                 <p class="text-secondary text-center">Rata-rata Gaji Alumni : Rp. {{number_format($avgGaji,2,",",".")}} </p>
             </div>
+
+            <div class="col-sm-6 my-5">      
+              <h3 class="text-center">Rentang Waktu Mendapatkan Pekerjaan</h3>     
+                <div>
+                  <canvas id="chartRKerja"></canvas>
+                </div>
+                <p class="text-secondary text-center">Rata-rata Rentang Alumni Mendapatkan Pekerjaan : {{number_format($avgRKerja,2)}} Tahun</p>
+            </div>
+
 
           </div>    
         </div>
@@ -246,7 +257,9 @@
         </ul>
       </footer>
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        {{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> --}}
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/chartjs-chart-venn@3.6.0/build/index.umd.min.js"></script>
             
             <script>
               const cKelulusan = document.getElementById('chartKelulusan'),
@@ -254,7 +267,9 @@
                     cBekerja = document.getElementById('chartBekerja'),
                     cRelevansi = document.getElementById('chartRelevansi'),
                     cKategori = document.getElementById('chartKategori'),
+                    cKategori2 = document.getElementById('chartKategori2'),
                     cGaji = document.getElementById('chartGaji'),
+                    cRKerja = document.getElementById('chartRKerja'),
                     cIPK = document.getElementById('chartIPK'),
                     cLamaKuliah = document.getElementById('chartLamaKuliah');
       
@@ -372,8 +387,8 @@
                     label: 'Alumni',
                     data: [{{count($K3tahun)}}, {{count($K5tahun)}}, {{count($K6tahun)}}, ],
                     hoverOffset: 4,
-                    borderWidth:2,
-                    backgroundColor: ['#47A992', '#36A2EB', '#B70404']
+                    borderWidth:4,
+                    borderColor: ['#47A992', '#36A2EB', '#B70404']
                   }],
                 },
                 options:{
@@ -393,8 +408,8 @@
                     label: 'Alumni',
                     data: [{{$ipk[0]}}, {{$ipk[1]}}, {{$ipk[2]}}, {{$ipk[3]}}, {{$ipk[4]}} ],
                     hoverOffset: 4,
-                    borderWidth:2,
-                    backgroundColor: ['#47A992', '#36A2EB', '#B70404']
+                    borderWidth:4,
+                    borderColor: ['black', 'red', '#DAA520', '#36A2EB','#47A992' ,'#B70404',]
                   }],
                 },
                 options:{
@@ -420,19 +435,7 @@
                 },
               });
 
-              new Chart(cKategori, {
-                type: 'pie',
-                data: {
-                  labels: ["IT Non kependidikan", "IT kependidikan", "Kependidikan IT", "Kependidikan Non IT", "Non IT Non Kependidikan" ],
-                  datasets: [{
-                    label: 'Alumni',
-                    data: [{{ $kategoriPekerjaan1}}, {{ $kategoriPekerjaan2 }}, {{ $kategoriPekerjaan3 }}, {{ $kategoriPekerjaan4 }}, {{ $kategoriPekerjaan5 }} ],
-                    hoverOffset: 4,
-                    borderWidth:2,
-                    backgroundColor: ['lightblue', '#47A992', 'blue', 'brown', 'red']
-                  }]
-                }
-              });
+           
 
               new Chart(cGaji, {
                 type: 'bar',
@@ -454,6 +457,83 @@
                   }
                 }
               });
+
+              new Chart(cRKerja, {
+                type: 'bar',
+                data: {
+                  labels: ["Kurang Dari 1 Tahun", "1 ~ 2 Tahun", "2 ~ 3 Tahun", "3 ~ 4 Tahun", "4 ~ 5 Tahun", "5 ~ 6 Tahun", "Lebih Dari 6 Tahun" ],
+                  datasets: [{
+                    label: 'Jumlah',
+                    data: [{{ $rentangKerja[0]}}, {{ $rentangKerja[1] }}, {{ $rentangKerja[2] }}, {{ $rentangKerja[3] }}, {{ $rentangKerja[4] }}, {{ $rentangKerja[5] }}, {{ $rentangKerja[6] }}],
+                    hoverOffset: 4,
+                    borderWidth:2,
+                    backgroundColor: [
+                    'rgba(255, 26, 104, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(0, 0, 0, 0.2)'
+                  ]
+                  }]
+                },
+                options:{
+                  scales: {
+                    y: { // defining min and max so hiding the dataset does not change scale range
+                      beginAtZero: true
+                    }
+                  }
+                }
+              });
+
+              const config = {
+                type: 'venn',
+                data: ChartVenn.extractSets(
+                  [
+                    { label: 'Kependidikan', values: [@foreach ($kategoriPekerjaan1 as $a)
+                      {{$a}},
+                    @endforeach ]},
+                    { label: 'IT', values: [@foreach ($kategoriPekerjaan2 as $a)
+                      {{$a}},
+                    @endforeach ]},
+                    { label: 'Wirausaha', values: [@foreach ($kategoriPekerjaan3 as $a)
+                      {{$a}},
+                    @endforeach ]},
+                  ],
+                  {
+                    label: 'Kategori'
+                  }
+                ),
+                options: {
+                  backgroundColor: [
+                    'rgba(255, 26, 104, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(0, 0, 0, 0.2)'
+                  ],
+                  borderColor: [
+                    'rgba(255, 26, 104, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 0, 0, 1)'
+                  ],
+                  borderWidth: 1,
+                  label: 'Kategori'
+                },
+              };
+
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('chartKategori2'),
+      config
+    );
 
             </script>
         @endif

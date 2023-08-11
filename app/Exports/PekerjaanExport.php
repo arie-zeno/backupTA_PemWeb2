@@ -16,11 +16,11 @@ class PekerjaanExport implements FromCollection,WithHeadings
     {
         return DB::table('pekerjaans')
             ->join('biodatas', 'biodatas.nim', '=', 'pekerjaans.nim')
-            ->select('biodatas.name', 'biodatas.ipk', 'pekerjaans.*')
+            ->select('biodatas.name', 'biodatas.ipk', 'biodatas.tglLulus', 'pekerjaans.*')
             ->get();
     }
     public function headings() : array
     {
-        return ["Nama", "IPK","id", "NIM", "Kategori", "Pekerjaan", "Alamat Pekerjaan", "Tgl Bekerja", "Gaji", "Relevansi"];
+        return ["Nama", "IPK", "Tgl Lulus", "id", "NIM", "Kategori 1","Kategori 2","Kategori 3", "Pekerjaan", "Alamat Pekerjaan", "Tgl Bekerja", "Gaji", "Relevansi"];
     }
 }

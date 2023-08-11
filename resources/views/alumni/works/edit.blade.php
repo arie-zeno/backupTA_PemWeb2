@@ -1,7 +1,6 @@
 @extends("alumni.layouts.main")
 @section("container")
 <h1 class="mt-4">Isi Data Pekerjaan</h1>
-
 <div class="col-sm-6">
 
     <form method="POST" action="/alumni/works/{{$pekerjaan->id}}">
@@ -12,22 +11,41 @@
 
     <div class="mb-3">
         <label for="kategori_pekerjaan" class="form-label">Kategori Pekerjaan</label>
-        <select id="kategori_pekerjaan" class="form-select" aria-describedby="basic-addon4" name="kategori_pekerjaan">
-            <option selected value="{{$pekerjaan->kategori_pekerjaan}}">{{$pekerjaan->kategori_pekerjaan}}</option>
-            <option value="IT Non kependidikan">IT ~ Non Kependidikan</option>
-            <option value="IT kependidikan">IT ~ Kependidikan</option>
-            <option value="Kependidikan IT">Kependidikan ~ IT</option>
-            <option value="Kependidikan Non IT">Kependidikan ~ Non IT</option>
-            <option value="Non IT Non Kependidikan">Non IT ~ Non Kependidikan</option>
-        </select>
-        <div class="form-text" id="basic-addon4">
-            <ul>
-                <li>IT ~ Non Kependidikan : Programmer, FrontEnd, IT Support, dll.</li>
-                <li>IT ~ Kependidikan : Admin Sekolah, Operator, dll. </li>
-                <li>Kependidikan ~ IT : Guru TKJ, Guru Komputer, dll. </li>
-                <li>Kependidikan ~ Non IT : Guru SD, Guru IPA, Guru MTK, dll. </li>
-            </ul>
-        </div>
+        <div class="row g-3">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                        <input type="hidden" name="kategori_pekerjaan1" value="0">
+                      <input id="Kependidikan" class="form-check-input mt-0" type="checkbox" name="kategori_pekerjaan1" value="1" @if ($pekerjaan->kategori_pekerjaan1 == 1)
+                          checked
+                      @endif>
+                    </div>
+                        <label for="Kependidikan" class="form-control">Kependidikan</label>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input type="hidden" name="kategori_pekerjaan2" value="0">
+                      <input id="IT" class="form-check-input mt-0" type="checkbox" name="kategori_pekerjaan2" value="1" @if ($pekerjaan->kategori_pekerjaan2 == 1)
+                      checked
+                  @endif>
+                    </div>
+                        <label for="IT" class="form-control">IT</label>
+                  </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-text">
+                      <input type="hidden" name="kategori_pekerjaan3" value="0">
+                      <input id="Wirausaha" class="form-check-input mt-0" type="checkbox" name="kategori_pekerjaan3" value="1" @if ($pekerjaan->kategori_pekerjaan3 == 1)
+                      checked
+                  @endif>
+                    </div>
+                        <label for="Wirausaha" class="form-control">Wirausaha</label>
+                  </div>
+            </div>
+          </div>
     </div>
     
     <div class="mb-3">

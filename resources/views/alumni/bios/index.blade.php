@@ -38,7 +38,7 @@
         @endif
     </div>
 
-<div class="col-sm-4 bg-light p-4 rounded mt-5">
+<div class="col-sm-6 bg-light p-4 rounded mt-5">
     
         <label class="text-secondary" for="">Nama</label>
         <h6 class="fw-bold">{{$biodata->name}}</h6>
@@ -50,7 +50,10 @@
         <h6 class="fw-bold">{{$biodata->kontak}}</h6>
 
         <label class="text-secondary" for="">Tempat Tanggal Lahir</label>
-        <h6 class="fw-bold">{{$biodata->tempatLahir}}, {{$biodata->tglLahir}}</h6>
+        <h6 class="fw-bold">{{$biodata->tempatLahir}}, {{date('d F Y', strtotime($biodata->tglLahir))}}</h6>
+
+        <label class="text-secondary" for="">Alamat</label>
+        <h6 class="fw-bold">Kelurahan {{ucfirst(strtolower($biodata->kelurahan))}} Kecamatan {{ucfirst(strtolower($biodata->kecamatan))}} {{ucfirst(strtolower($biodata->kabupaten))}} Provinsi {{ucfirst(strtolower($biodata->provinsi))}}</h6>
 
         <label class="text-secondary" for="">Jenis Kelamin</label>
         <h6 class="fw-bold">{{$biodata->jk}}</h6>
@@ -61,15 +64,35 @@
         <label class="text-secondary" for="">Status Pernikahan</label>
         <h6 class="fw-bold">{{$biodata->kawin}} kawin</h6>
         
-        <label class="text-secondary" for="">Tahun Masuk</label>
-        <h6 class="fw-bold">{{$biodata->thnMasuk}}</h6>
+        <label class="text-secondary" for="">Tanggal Masuk</label>
+        <h6 class="fw-bold">{{$biodata->tglMasuk}}</h6>
 
-        <label class="text-secondary" for="">Tahun Kelulusan</label>
-        <h6 class="fw-bold">{{$biodata->thnLulus}}</h6>
+        <label class="text-secondary" for="">Tanggal Kelulusan</label>
+        <h6 class="fw-bold">{{$biodata->tglLulus}}</h6>
         
         
         <label class="text-secondary" for="">Lama Masa Studi</label>
-        <h6 class="fw-bold">{{$biodata->thnLulus - $biodata->thnMasuk}} Tahun</h6>
+        @php
+            $tgl1 = new DateTime($biodata->tglMasuk);
+            $tgl2 = new DateTime($biodata->tglLulus);
+            $jarak = $tgl2->diff($tgl1);
+
+            $str = '';
+
+            if($jarak->y != 0){
+                $str .= $jarak->y . ' Tahun ';
+            }
+
+            if($jarak->m != 0){
+                $str .= $jarak->m . ' Bulan ';
+            }
+
+            if($jarak->d != 0){
+                $str .= $jarak->d . ' Hari ';
+            }
+
+        @endphp
+        <h6 class="fw-bold">{{$str}}</h6>
 
         <label class="text-secondary" for="">IPK</label>
         <h6 class="fw-bold">{{$biodata->ipk}}</h6>

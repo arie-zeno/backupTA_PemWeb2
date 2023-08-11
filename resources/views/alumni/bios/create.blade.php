@@ -29,8 +29,18 @@
     </div>
 
     <div class="mb-3">
-        <label for="thnLulus" class="form-label">Tahun Lulus</label>
-        <input type="text" class="form-control" id="thnLulus" name="thnLulus" placeholder="Contoh : 2015">
+        <label for="tglMasuk" class="form-label">Tanggal Masuk</label>
+        <input type="date" class="form-control" id="tglMasuk" name="tglMasuk" placeholder="Contoh : 2015">
+    </div>
+
+    <div class="mb-3">
+        <label for="tglLulus" class="form-label">Tanggal Kelulusan</label>
+        <input type="date" class="form-control" id="tglLulus" name="tglLulus" placeholder="Contoh : 2015">
+    </div>
+
+    <div class="mb-3">
+        <label for="noIjazah" class="form-label">Nomor Ijazah</label>
+        <input type="text" class="form-control" id="noIjazah" name="noIjazah" placeholder="Nomor Ijazah ">
     </div>
 
     <div class="mb-3">
@@ -49,7 +59,7 @@
     <label class="form-label" >Alamat</label>
     <div class="input-group mb-3">
         <label class="input-group-text" for="provinsi">Provinsi</label>
-        <select class="form-select" id="provinsi">
+        <select class="form-select" id="provinsi" name="provinsi">
           <option selected>--Pilih Provinsi--</option>
           @foreach ($provinces as $provinsi )  
           <option value="{{$provinsi->id}}">{{$provinsi->name}}</option>
@@ -59,21 +69,21 @@
 
       <div class="input-group mb-3">
         <label class="input-group-text" for="kabupaten">Kabupaten</label>
-        <select class="form-select" id="kabupaten">
+        <select class="form-select" id="kabupaten" name="kabupaten">
 
         </select>
       </div>
 
       <div class="input-group mb-3">
         <label class="input-group-text" for="kecamatan">Kecamatan</label>
-        <select class="form-select" id="kecamatan">
+        <select class="form-select" id="kecamatan" name="kecamatan">
 
         </select>
       </div>
 
       <div class="input-group mb-3">
         <label class="input-group-text" for="kelurahan">Kelurahan</label>
-        <select class="form-select" id="kelurahan">
+        <select class="form-select" id="kelurahan" name="kelurahan">
 
         </select>
       </div>

@@ -49,18 +49,31 @@ class AlumniController extends Controller
             'kontak' => 'required',
             'foto' => 'image|file',
             'user_id' => "required",
-            'thnLulus' => 'required',
+            'tglMasuk' => 'required',
+            'tglLulus' => 'required',
             'jk' => 'required',
             'tempatLahir' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
             'tglLahir' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
-            'kawin' => 'required'
+            'kawin' => 'required',
+            'noIjazah' => 'required'
         ]);
 
-        $tahunMasuk = "20" . $validatedData["nim"][0].$validatedData["nim"][1];
-        // dd($request);
-        $validatedData["thnMasuk"] = $tahunMasuk;
+        $kelurahan = Village::where('id', $validatedData['kelurahan'])->first()->name;
+        $kecamatan = District::where('id', $validatedData['kecamatan'])->first()->name;
+        $kabupaten = Regency::where('id', $validatedData['kabupaten'])->first()->name;
+        $provinsi = Province::where('id', $validatedData['provinsi'])->first()->name;
+
+        $validatedData["kelurahan"] = $kelurahan;
+        $validatedData["kecamatan"] = $kecamatan;
+        $validatedData["kabupaten"] = $kabupaten;
+        $validatedData["provinsi"] = $provinsi;
+
 
         if($request->file('foto')){
             $validatedData['foto'] = $request->file('foto')->store('img');
@@ -86,9 +99,10 @@ class AlumniController extends Controller
      */
     public function edit($nim)
     {
+        $provinces = Province::all();
         return view("alumni.bios.edit",[
             'bio' => Biodata::find($nim)
-        ]);
+        ], compact('provinces'));
     }
 
     /**
@@ -100,17 +114,35 @@ class AlumniController extends Controller
         $validatedData = $request->validate([
             'nim' => 'required',
             'name' => 'required',
+            'ipk' => 'required',
+            'kontak' => 'required',
             'foto' => 'image|file',
             'user_id' => "required",
-            'thnLulus' => 'required',
+            'tglMasuk' => 'required',
+            'tglLulus' => 'required',
             'jk' => 'required',
             'tempatLahir' => 'required',
+            'kelurahan' => 'required',
+            'kecamatan' => 'required',
+            'kabupaten' => 'required',
+            'provinsi' => 'required',
             'tglLahir' => 'required',
             'agama' => 'required',
             'pekerjaan' => 'required',
-            'kawin' => 'required'
+            'kawin' => 'required',
+            'noIjazah' => 'required',
         ]);
-        // return $validatedData;
+
+        $kelurahan = Village::where('id', $validatedData['kelurahan'])->first()->name;
+        $kecamatan = District::where('id', $validatedData['kecamatan'])->first()->name;
+        $kabupaten = Regency::where('id', $validatedData['kabupaten'])->first()->name;
+        $provinsi = Province::where('id', $validatedData['provinsi'])->first()->name;
+
+        $validatedData["kelurahan"] = $kelurahan;
+        $validatedData["kecamatan"] = $kecamatan;
+        $validatedData["kabupaten"] = $kabupaten;
+        $validatedData["provinsi"] = $provinsi;
+
         if($request->file('foto')){
             $validatedData['foto'] = $request->file('foto')->store('img');
         }

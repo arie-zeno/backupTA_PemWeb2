@@ -17,15 +17,20 @@ return new class extends Migration
             $table->string("foto")->nullable();
             $table->string("name");
             $table->foreignId("user_id");
-            $table->year("thnMasuk");
-            $table->year("thnLulus")->nullable();
-            $table->string("ipk")->nullable();
-            $table->string("tempatLahir")->nullable();
-            $table->date("tglLahir")->nullable();
+            $table->date("tglMasuk");
+            $table->date("tglLulus");
+            $table->string("ipk");
+            $table->string("tempatLahir");
+            $table->string("kelurahan");
+            $table->string("kecamatan");
+            $table->string("kabupaten");
+            $table->string("provinsi");
+            $table->date("tglLahir");
             $table->string("jk");
-            $table->string("agama")->nullable();
-            $table->string("kawin")->nullable();
+            $table->string("agama");
+            $table->string("kawin");
             $table->string("pekerjaan");
+            $table->string("noIjazah");
             $table->timestamps();
         });
     }

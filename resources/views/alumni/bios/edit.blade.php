@@ -1,5 +1,6 @@
 @extends("alumni.layouts.main")
 @section("container")
+<meta name="csrf-token" content="{{csrf_token()}}"/>
 <h1>Isi Biodata</h1>
 
 <div class="col-sm-6">
@@ -31,8 +32,18 @@
     </div>
 
     <div class="mb-3">
-        <label for="thnLulus" class="form-label">Tahun Lulus</label>
-        <input type="text" class="form-control" id="thnLulus" name="thnLulus" placeholder="Contoh : 2015" value="{{$bio->thnLulus}}">
+        <label for="tglMasuk" class="form-label">Tanggal Masuk</label>
+        <input type="text" class="form-control" id="tglMasuk" name="tglMasuk" placeholder="Contoh : 2015" value="{{$bio->tglMasuk}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="tglLulus" class="form-label">Tanggal Kelulusan</label>
+        <input type="text" class="form-control" id="tglLulus" name="tglLulus" placeholder="Contoh : 2015" value="{{$bio->tglLulus}}">
+    </div>
+
+    <div class="mb-3">
+        <label for="noIjazah" class="form-label">Nomor Ijazah</label>
+        <input type="text" class="form-control" id="noIjazah" name="noIjazah" placeholder="Contoh : 2015" value="{{$bio->noIjazah}}">
     </div>
 
     <div class="mb-3">
@@ -49,6 +60,48 @@
             <input type="date" aria-label="Last name" class="form-control" name="tglLahir" value="{{$bio->tglLahir}}">
         </div>
     </div>
+
+    <label class="form-label" >Alamat</label>
+    @php
+        use App\Models\Province;
+        use App\Models\Regency;
+        use App\Models\District;
+        use App\Models\Village;
+    @endphp
+    <div class="input-group mb-3">
+        <label class="input-group-text" for="provinsi">Provinsi</label>
+        <select class="form-select" id="provinsi" name="provinsi">
+          <option selected value="{{Province::where('name', $bio->provinsi)->first()->id;
+        }}">{{$bio->provinsi}}</option>
+          @foreach ($provinces as $provinsi )  
+          <option value="{{$provinsi->id}}">{{$provinsi->name}}</option>
+          @endforeach
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="kabupaten">Kabupaten</label>
+        <select class="form-select" id="kabupaten" name="kabupaten">
+          <option selected value="{{Regency::where('name', $bio->kabupaten)->first()->id;
+        }}">{{$bio->kabupaten}}</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="kecamatan">Kecamatan</label>
+        <select class="form-select" id="kecamatan" name="kecamatan">
+          <option selected value="{{District::where('name', $bio->kecamatan)->first()->id;
+        }}">{{$bio->kecamatan}}</option>
+        </select>
+      </div>
+
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="kelurahan">Kelurahan</label>
+        <select class="form-select" id="kelurahan" name="kelurahan">
+            <option selected value="{{Village::where('name', $bio->kelurahan)->first()->id;
+            }}">{{$bio->kelurahan}}</option>
+        </select>
+      </div>
 
     <div class="mb-3">
         <label for="jk" class="form-label">Jenis Kelamin</label>
@@ -94,3 +147,71 @@
 </form>
 </div>
 @endsection
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+
+<script>
+    $(function(){
+        $.ajaxSetup({
+            headers: {'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')}
+        });
+    });
+
+    $(function(){
+        $('#provinsi').on('change', () => {
+            let id_provinsi = $('#provinsi').val();
+            
+            $.ajax({
+                type : "POST",
+                url : "{{route('getKabupaten')}}",
+                data : {id_provinsi:id_provinsi},
+                cache : false,
+
+                success: function(msg){
+                    $('#kabupaten').html(msg);
+                    $('#kecamatan').html('');
+                    $('#kelurahan').html('');
+                },
+                error: (data) => {
+                    console.log('error', data)
+                }
+            })
+        })
+
+        $('#kabupaten').on('change', () => {
+            let id_kabupaten = $('#kabupaten').val();
+            
+            $.ajax({
+                type : "POST",
+                url : "{{route('getKecamatan')}}",
+                data : {id_kabupaten:id_kabupaten},
+                cache : false,
+
+                success: function(msg){
+                    $('#kecamatan').html(msg);
+                    $('#kelurahan').html('');
+                },
+                error: (data) => {
+                    console.log('error', data)
+                }
+            })
+        })
+
+        $('#kecamatan').on('change', () => {
+            let id_kecamatan = $('#kecamatan').val();
+            
+            $.ajax({
+                type : "POST",
+                url : "{{route('getKelurahan')}}",
+                data : {id_kecamatan:id_kecamatan},
+                cache : false,
+
+                success: function(msg){
+                    $('#kelurahan').html(msg);
+                },
+                error: (data) => {
+                    console.log('error', data)
+                }
+            })
+        })
+    })
+</script>

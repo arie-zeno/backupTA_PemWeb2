@@ -89,10 +89,38 @@ use Carbon\Carbon;
     <tr>
         <th scope="row">{{ $loop->iteration }}</th>
         <td>{{ $pekerjaan->biodata->name }}</td>
-        <td>{{ $pekerjaan->kategori_pekerjaan }}</td>
+        <td>{{$pekerjaan->kategori_pekerjaan1 == 1 ? 'Kependidikan': ''}}, {{$pekerjaan->kategori_pekerjaan2 == 1 ? 'IT': ''}}, {{$pekerjaan->kategori_pekerjaan3 == 1 ? 'Wirausaha': ''}}</td>
         <td>{{ $pekerjaan->nama_pekerjaan }}</td>
-        <td>{{ $pekerjaan->biodata->thnLulus }}</td>
-        <td>{{Carbon::parse($pekerjaan->tanggal_pekerjaan)->locale('id')->diffForHumans($pekerjaan->biodata->thnLulus . '0101')}} (kelulusan) ~ {{$pekerjaan->tanggal_pekerjaan}}</td>
+        <td>{{date('d F Y', strtotime($pekerjaan->biodata->tglLulus))}}</td>
+        @php
+        $tgl2 = new DateTime($pekerjaan->tanggal_pekerjaan);
+        $tgl1 = new DateTime($pekerjaan->biodata->tglLulus);
+        $jarak = $tgl2->diff($tgl1);
+
+        $str = '';
+
+        if($jarak->y != 0){
+            $str .= $jarak->y . ' Tahun ';
+        }
+
+        if($jarak->m != 0){
+            $str .= $jarak->m . ' Bulan ';
+        }
+
+        if($jarak->d != 0){
+            $str .= $jarak->d . ' Hari ';
+        }
+
+        if($tgl1 > $tgl2){
+            $str .= "Sebelum Kelulusan";
+        }else{
+            $str .= "Setelah Kelulusan";
+        }
+
+        @endphp
+        <td>{{$str}} ~ {{date('d F Y', strtotime($pekerjaan->tanggal_pekerjaan))}}</td>
+
+
         <td>{{number_format($pekerjaan->gaji,2,",",".") }}</td>
       <td>
         <form action="/admin/pekerjaan/{{$pekerjaan->id}}" method="post">

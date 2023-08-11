@@ -21,7 +21,7 @@ class AdminBiodataController extends Controller
     {
         return view("adminDash.biodata.index", [
             "biodatas" => DB::table('biodatas')
-            ->orderBy('thnMasuk', 'asc')
+            ->orderBy('tglMasuk', 'asc')
             ->orderBy('name', 'asc')
             ->get()
             // "biodatas" => Biodata::all(),

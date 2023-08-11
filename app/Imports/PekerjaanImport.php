@@ -16,10 +16,12 @@ class PekerjaanImport implements ToModel
     {
         return new Pekerjaan([
             'nim'     => $row[0],
-            'kategori_pekerjaan'     => $row[1],
-            'nama_pekerjaan'     => $row[2],
-            'tempat_pekerjaan'     => $row[3],
-            'tanggal_pekerjaan'     => $row[4].'-'.$row[5].'-'.$row[6],
+            'kategori_pekerjaan1'     => $row[1],
+            'kategori_pekerjaan2'     => $row[2],
+            'kategori_pekerjaan3'     => $row[3],
+            'nama_pekerjaan'     => $row[4],
+            'tempat_pekerjaan'     => $row[5],
+            'tanggal_pekerjaan'     => $row[6],
             'gaji'     => $row[7],
             'relevansi_pekerjaan'     => $row[8]
         ]);

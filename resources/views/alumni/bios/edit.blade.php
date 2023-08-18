@@ -47,6 +47,11 @@
     </div>
 
     <div class="mb-3">
+        <label for="fotoIjazah" class="form-label">Scan Ijazah</label>
+        <input type="file" class="form-control" id="fotoIjazah" name="fotoIjazah" placeholder="foto Ijazah" value="{{asset('storage/' . $bio->fotoIjazah) }}">
+    </div>
+
+    <div class="mb-3">
         <label for="ipk" class="form-label">IPK</label>
         <input type="text" class="form-control @error('ipk')
             is-invalid

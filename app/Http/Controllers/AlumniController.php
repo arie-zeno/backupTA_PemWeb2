@@ -61,7 +61,8 @@ class AlumniController extends Controller
             'agama' => 'required',
             'pekerjaan' => 'required',
             'kawin' => 'required',
-            'noIjazah' => 'required'
+            'noIjazah' => 'required',
+            'fotoIjazah' => 'image|file'
         ]);
 
         $kelurahan = Village::where('id', $validatedData['kelurahan'])->first()->name;
@@ -77,6 +78,9 @@ class AlumniController extends Controller
 
         if($request->file('foto')){
             $validatedData['foto'] = $request->file('foto')->store('img');
+        }
+        if($request->file('fotoIjazah')){
+            $validatedData['fotoIjazah'] = $request->file('fotoIjazah')->store('ijazah');
         }
         // return $validatedData;
 
@@ -145,6 +149,9 @@ class AlumniController extends Controller
 
         if($request->file('foto')){
             $validatedData['foto'] = $request->file('foto')->store('img');
+        }
+        if($request->file('fotoIjazah')){
+            $validatedData['fotoIjazah'] = $request->file('fotoIjazah')->store('ijazah');
         }
 
         Biodata::where('nim', $nim)->update($validatedData);

@@ -33,6 +33,7 @@
         <!-- <label class="text-secondary" for="">Nama</label> -->
         @if($biodata->foto)
         <img src="{{asset('storage/' . $biodata->foto) }}" class="img-thumbnail" alt="...">
+        {{-- <img src="{{asset('storage/' . $biodata->fotoIjazah) }}" class="img-thumbnail" alt="..."> --}}
         @else
             <img src="/img/noImage.png" class="img-thumbnail" alt="...">
         @endif
@@ -65,10 +66,10 @@
         <h6 class="fw-bold">{{$biodata->kawin}} kawin</h6>
         
         <label class="text-secondary" for="">Tanggal Masuk</label>
-        <h6 class="fw-bold">{{$biodata->tglMasuk}}</h6>
+        <h6 class="fw-bold">{{date('d F Y', strtotime($biodata->tglMasuk))}}</h6>
 
         <label class="text-secondary" for="">Tanggal Kelulusan</label>
-        <h6 class="fw-bold">{{$biodata->tglLulus}}</h6>
+        <h6 class="fw-bold">{{date('d F Y', strtotime($biodata->tglLulus))}}</h6>
         
         
         <label class="text-secondary" for="">Lama Masa Studi</label>

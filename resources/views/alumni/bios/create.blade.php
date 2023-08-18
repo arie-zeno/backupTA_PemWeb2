@@ -25,40 +25,61 @@
 
     <div class="mb-3">
         <label for="kontak" class="form-label">Kontak</label>
-        <input type="number" class="form-control" id="kontak" name="kontak" placeholder="Contoh : 0822xxxxxxxx" >
+        <input type="number" class="form-control @error('kontak')
+        is-invalid
+    @enderror" id="kontak" name="kontak" placeholder="Contoh : 0822xxxxxxxx" >
     </div>
 
     <div class="mb-3">
         <label for="tglMasuk" class="form-label">Tanggal Masuk</label>
-        <input type="date" class="form-control" id="tglMasuk" name="tglMasuk" placeholder="Contoh : 2015">
+        <input type="date" class="form-control @error('tglMasuk')
+        is-invalid
+    @enderror" id="tglMasuk" name="tglMasuk" placeholder="Contoh : 2015">
     </div>
 
     <div class="mb-3">
         <label for="tglLulus" class="form-label">Tanggal Kelulusan</label>
-        <input type="date" class="form-control" id="tglLulus" name="tglLulus" placeholder="Contoh : 2015">
+        <input type="date" class="form-control @error('tglLulus')
+        is-invalid
+    @enderror" id="tglLulus" name="tglLulus" placeholder="Contoh : 2015">
     </div>
 
     <div class="mb-3">
         <label for="noIjazah" class="form-label">Nomor Ijazah</label>
-        <input type="text" class="form-control" id="noIjazah" name="noIjazah" placeholder="Nomor Ijazah ">
+        <input type="text" class="form-control @error('noIjazah')
+        is-invalid
+    @enderror" id="noIjazah" name="noIjazah" placeholder="Nomor Ijazah ">
+    </div>
+
+    <div class="mb-3">
+        <label for="fotoIjazah" class="form-label">Scan Ijazah</label>
+        <input type="file" class="form-control @error('fotoIjazah')
+        is-invalid
+    @enderror" id="fotoIjazah" name="fotoIjazah" placeholder="foto Ijazah">
     </div>
 
     <div class="mb-3">
         <label for="ipk" class="form-label">IPK</label>
-        <input type="text" class="form-control" id="ipk" name="ipk" placeholder="Contoh : 3.8">
+        <input type="text" class="form-control @error('ipk')
+        is-invalid
+    @enderror" id="ipk" name="ipk" placeholder="Contoh : 3.8">
     </div>
 
     <div class="mb-3">
         <label for="thnLulus" class="form-label">Tempat, Tanggal Lahir</label>
         <div class="input-group">
-            <input type="text" aria-label="First name" class="form-control" name="tempatLahir" placeholder="Tempat Lahir">
-            <input type="date" aria-label="Last name" class="form-control" name="tglLahir">
+            <input type="text" aria-label="First name" class="form-control @error('tempatLahir')
+            is-invalid
+        @enderror" name="tempatLahir" placeholder="Tempat Lahir">
+            <input type="date" aria-label="Last name" class="form-control @error('tglLahir')
+            is-invalid
+        @enderror" name="tglLahir">
         </div>
     </div>
 
     <label class="form-label" >Alamat</label>
     <div class="input-group mb-3">
-        <label class="input-group-text" for="provinsi">Provinsi</label>
+        <label class="input-group-text " for="provinsi">Provinsi</label>
         <select class="form-select" id="provinsi" name="provinsi">
           <option selected>--Pilih Provinsi--</option>
           @foreach ($provinces as $provinsi )  

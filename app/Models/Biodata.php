@@ -28,7 +28,8 @@ class Biodata extends Model
             'kawin',
             'ipk',
             'kontak',
-            'noIjazah'
+            'noIjazah',
+            'fotoIjazah'
 
     ];
 

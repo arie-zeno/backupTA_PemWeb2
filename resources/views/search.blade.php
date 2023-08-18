@@ -135,15 +135,15 @@ use Carbon\Carbon;
 
                     {{-- modal --}}
                   <div class="modal fade" id="detal{{$biodata->nim}}" tabindex="-1" aria-labelledby="detal{{$biodata->nim}}Label" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                      <div class="modal-content">
-                        <div class="modal-header">
+                    <div class="modal-dialog modal-dialog-centered ">
+                      <div class="modal-content ">
+                        <div class="modal-header ">
                           <h1 class="modal-title fs-5" id="detal{{$biodata->nim}}Label">{{$biodata->nim}}</h1>
                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
-                          <ul class="nav nav-tabs" id="myTab" role="tablist">
-                            <li class="nav-item" role="presentation">
+                        <div class="modal-body ">
+                          <ul class="nav nav-tabs " id="myTab" role="tablist">
+                            <li class="nav-item " role="presentation">
                               <button class="nav-link active" id="foto-tab" data-bs-toggle="tab" data-bs-target="#foto-{{$biodata->nim}}-tab-pane" type="button" role="tab" aria-controls="foto-{{$biodata->nim}}-tab-pane" aria-selected="true">Foto</button>
                             </li>
                             <li class="nav-item" role="presentation">
@@ -155,7 +155,7 @@ use Carbon\Carbon;
 
                           </ul>                        
                           
-                          <div class="tab-content" id="myTabContent">
+                          <div class="tab-content " id="myTabContent">
                             <div class="tab-pane fade show active" id="foto-{{$biodata->nim}}-tab-pane" role="tabpanel" aria-labelledby="foto-{{$biodata->nim}}-tab" tabindex="0">
                               @if($biodata->foto)
                               <img src="{{asset('storage/' . $biodata->foto) }}" class="img-thumbnail" alt="...">
@@ -246,6 +246,7 @@ use Carbon\Carbon;
                                     <h6 class="fw-bold">{{$biodata->works[count($biodata->works)-1]->tempat_pekerjaan}}</h6>
                             
                                     <label class="text-secondary" for="">Tanggal Kelulusan</label>
+                                    
                                     <h6 class="fw-bold">{{date('d F Y', strtotime($biodata->tglLulus))}}</h6>
 
                                     <label class="text-secondary" for="">Mulai Bekerja</label>

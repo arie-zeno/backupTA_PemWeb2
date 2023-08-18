@@ -541,18 +541,28 @@
         <script>
 
 let navbar = document.getElementById("navbar");
-let navbarNav = document.getElementById("navbar-nav");
+let navbarNav = document.querySelector(".navbar-nav");
+let linkNav = navbarNav.querySelectorAll("a.nav-link");
+let navbarBrand = document.querySelector(".navbar-brand");
 window.addEventListener("scroll", () =>{
   console.log(window.scrollY)
-  if(window.scrollY > 100){
+  if(window.scrollY > 350){
     // navbar.style.backgroundColor = "#eca457"
     navbar.style.backgroundColor = "#ffffff88"
-    navbar.style.boxShadow = "2px 2px 2px black"
-    navbar.style.transform = "translateY(0)"
+    navbar.style.boxShadow = "3px 3px 3px black"
+    linkNav[0].style.color = "black"
+    linkNav[1].style.color = "black"
+    linkNav[2].style.color = "black"
+    linkNav[3].style.color = "black"
+    navbarBrand.style.color = "black"
   }else {
     navbar.style.backgroundColor = "transparent"
     navbar.style.boxShadow = "none"
-    navbar.style.transform = "translateY(-120px)"
+    linkNav[0].style.color = "white"
+    linkNav[1].style.color = "white"
+    linkNav[2].style.color = "white"
+    linkNav[3].style.color = "white"
+    navbarBrand.style.color = "white"
     
   }
 });

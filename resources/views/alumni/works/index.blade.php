@@ -7,7 +7,7 @@ use Carbon\Carbon;
 <h1 class="mt-4">Halaman Pekerjaan</h1>
 
 {{-- $work->biodata->name --}}
-@if (!$biodata)
+@if (count($biodata) != 0)
     @if($biodata[0]['pekerjaan'] == "belum")
     <div class="col-sm-4 bg-light p-4 rounded mt-5">
         <h5>Anda tidak bisa mengisi data pekerjaan karena status anda belum bekerja</h5>
@@ -113,7 +113,7 @@ use Carbon\Carbon;
     @endif
 @else
 <div class="col-sm-4 bg-light p-4 rounded mt-5">
-    <h5>Anda belum mengisi Biodata, silahkan <a href="/alumni/bios/create">isi data biodata</a></h5>
+    <h5>Anda belum mengisi Biodata, silahkan <a href="/alumni/bios/create">isi biodata</a></h5>
 </div>           
 @endif
 

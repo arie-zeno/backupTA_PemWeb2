@@ -491,6 +491,7 @@
                 type: 'venn',
                 data: ChartVenn.extractSets(
                   [
+                    
                     { label: 'Kependidikan', values: [@foreach ($kategoriPekerjaan1 as $a)
                       {{$a}},
                     @endforeach ]},

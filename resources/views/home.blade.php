@@ -116,8 +116,8 @@
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
           backdrop-filter: blur(5px);
           -webkit-backdrop-filter: blur(5px);">
-              <h1 class="fw-bold text-white text-shadow">Selamat Datang Di Website <span> Tracer Study</span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat</h1>
-              <p class="text-white fs-5 mt-4">Mari sukseskan pelaksanaan <span>tracer study </span>Prodi Pendidikan Komputer Universitas Lambung Mangkurat.</p>
+              <h1 class="fw-bold text-white text-shadow">Selamat Datang Di Website <span><b> Tracer Study </b></span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat</h1>
+              <p class="text-white fs-5 mt-4">Mari sukseskan pelaksanaan <span><b> Tracer Study </b></span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat dengan mengisi biodata anda <a style="text-decoration: none" href="http://"><span><i><b> disini. </b></i></span></a> </p>
             </div>
         </div>
 
@@ -247,7 +247,7 @@
       <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
         <div class="col-md-4 d-flex align-items-center">
 
-          <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 Computer Education</span>
+          <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2023 Computer Education </span>
         </div>
 
         <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
@@ -387,7 +387,7 @@
                     label: 'Alumni',
                     data: [{{count($K3tahun)}}, {{count($K5tahun)}}, {{count($K6tahun)}}, ],
                     hoverOffset: 4,
-                    borderWidth:4,
+                    borderWidth:2,
                     borderColor: ['#47A992', '#36A2EB', '#B70404']
                   }],
                 },
@@ -395,6 +395,11 @@
                   scales: {
                     y: { // defining min and max so hiding the dataset does not change scale range
                       beginAtZero: true
+                    }
+                  },
+                  plugins: {
+                    legend: {
+                      display: false
                     }
                   }
                 }
@@ -408,7 +413,7 @@
                     label: 'Alumni',
                     data: [{{$ipk[0]}}, {{$ipk[1]}}, {{$ipk[2]}}, {{$ipk[3]}}, {{$ipk[4]}} ],
                     hoverOffset: 4,
-                    borderWidth:4,
+                    borderWidth:2,
                     borderColor: ['black', 'red', '#DAA520', '#36A2EB','#47A992' ,'#B70404',]
                   }],
                 },
@@ -416,6 +421,11 @@
                   scales: {
                     y: { // defining min and max so hiding the dataset does not change scale range
                       beginAtZero: true
+                    }
+                  },
+                  plugins: {
+                    legend: {
+                      display: false
                     }
                   }
                 }
@@ -454,6 +464,11 @@
                     y: { // defining min and max so hiding the dataset does not change scale range
                       beginAtZero: true
                     }
+                  },
+                  plugins: {
+                      legend: {
+                        display: false
+                      },
                   }
                 }
               });
@@ -483,6 +498,11 @@
                     y: { // defining min and max so hiding the dataset does not change scale range
                       beginAtZero: true
                     }
+                  },
+                  plugins: {
+                      legend: {
+                        display: false
+                      },
                   }
                 }
               });
@@ -526,7 +546,14 @@
                     'rgba(0, 0, 0, 1)'
                   ],
                   borderWidth: 1,
-                  label: 'Kategori'
+                  plugins: {
+                      legend: {
+                        display: false
+                      },
+                      tooltip: {
+                        enabled: false // <-- this option disables tooltips
+                      }
+                    }
                 },
               };
 
@@ -544,16 +571,16 @@ let navbar = document.getElementById("navbar");
 let navbarNav = document.querySelector(".navbar-nav");
 let linkNav = navbarNav.querySelectorAll("a.nav-link");
 let navbarBrand = document.querySelector(".navbar-brand");
+let tblLogin = document.querySelector("#login");
 window.addEventListener("scroll", () =>{
-  console.log(window.scrollY)
   if(window.scrollY > 350){
-    // navbar.style.backgroundColor = "#eca457"
     navbar.style.backgroundColor = "#ffffff88"
     navbar.style.boxShadow = "3px 3px 3px black"
     linkNav[0].style.color = "black"
     linkNav[1].style.color = "black"
     linkNav[2].style.color = "black"
     linkNav[3].style.color = "black"
+    tblLogin.style.color = "black"
     navbarBrand.style.color = "black"
   }else {
     navbar.style.backgroundColor = "transparent"
@@ -562,6 +589,7 @@ window.addEventListener("scroll", () =>{
     linkNav[1].style.color = "white"
     linkNav[2].style.color = "white"
     linkNav[3].style.color = "white"
+    tblLogin.style.color = "white"
     navbarBrand.style.color = "white"
     
   }

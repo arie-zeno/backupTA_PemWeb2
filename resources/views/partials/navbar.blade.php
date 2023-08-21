@@ -30,15 +30,17 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    transition: 0.5s;
   }
   .navbar-nav a.nav-link:hover{
     color: black;
     z-index: 2;/* From https://css.glass */
-    background: rgba(237, 230, 230, 0.2);
+    background: rgba(23, 23, 23, 0.2);
     border-radius: 10px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(5px);
+    transform: scale(1.1);
   }
   .glass{
     z-index: 2;/* From https://css.glass */
@@ -87,7 +89,7 @@
           </ul>
         </li>  
         @else
-        <a class="nav-link " href="/login">Login</a>
+        <a class="nav-link " id="login" href="/login">Login</a>
         @endauth
         </div>
     </div>

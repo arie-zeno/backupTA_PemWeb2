@@ -33,6 +33,7 @@ class BiodataImport implements ToModel
             'kabupaten'     => $row[15],
             'provinsi'     => $row[16],
             'noIjazah'     => $row[17],
+            'koordinat'     => $row[18],
         ]);
     }
 }

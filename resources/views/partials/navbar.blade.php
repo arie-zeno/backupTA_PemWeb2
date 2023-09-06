@@ -63,6 +63,7 @@
           <a class="nav-link " href="/#about">Tracer Study</a>
           <a class="nav-link " href="/#statistik">Statistik</a>
           <a class="nav-link " href="/search">Cari Alumni</a>
+          <a class="nav-link " href="/lacak">Lacak Alumni</a>
         </div>
         <div class="navbar-nav m-end" id="navbar-nav">
           @auth

@@ -31,7 +31,8 @@ return new class extends Migration
             $table->string("kawin");
             $table->string("pekerjaan");
             $table->string("noIjazah");
-            $table->string("fotoIjazah");
+            $table->string("fotoIjazah")->nullable();
+            $table->string("koordinat");
             $table->timestamps();
         });
     }

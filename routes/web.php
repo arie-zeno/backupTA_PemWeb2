@@ -5,6 +5,7 @@ use App\Models\Pekerjaan;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WorkController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LacakController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AlumniController;
 use App\Http\Controllers\RegisterController;
@@ -394,6 +395,8 @@ Route::get('biodata-import-export', [AdminBiodataController::class, 'fileImportE
 Route::post('biodata-import', [AdminBiodataController::class, 'fileImport'])->name('biodata-import');
 Route::get('biodata-export', [AdminBiodataController::class, 'fileExport'])->name('biodata-export');
 
+// lacak
+Route::get('/lacak', [LacakController::class, "index"]);
 // pekerjaan
 Route::get('pekerjaan-import-export', [AdminPekerjaanController::class, 'fileImportExport']);
 Route::post('pekerjaan-import', [AdminPekerjaanController::class, 'fileImport'])->name('pekerjaan-import');

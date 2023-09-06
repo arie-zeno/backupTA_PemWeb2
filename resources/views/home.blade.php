@@ -576,12 +576,13 @@ window.addEventListener("scroll", () =>{
   if(window.scrollY > 350){
     navbar.style.backgroundColor = "#ffffff88"
     navbar.style.boxShadow = "3px 3px 3px black"
-    linkNav[0].style.color = "black"
-    linkNav[1].style.color = "black"
-    linkNav[2].style.color = "black"
-    linkNav[3].style.color = "black"
-    tblLogin.style.color = "black"
-    navbarBrand.style.color = "black"
+    linkNav[0].style.color = "navy"
+    linkNav[1].style.color = "navy"
+    linkNav[2].style.color = "navy"
+    linkNav[3].style.color = "navy"
+    linkNav[4].style.color = "navy"
+    tblLogin.style.color = "navy"
+    navbarBrand.style.color = "navy"
   }else {
     navbar.style.backgroundColor = "transparent"
     navbar.style.boxShadow = "none"
@@ -589,6 +590,7 @@ window.addEventListener("scroll", () =>{
     linkNav[1].style.color = "white"
     linkNav[2].style.color = "white"
     linkNav[3].style.color = "white"
+    linkNav[4].style.color = "white"
     tblLogin.style.color = "white"
     navbarBrand.style.color = "white"
     

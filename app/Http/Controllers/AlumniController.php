@@ -62,7 +62,8 @@ class AlumniController extends Controller
             'pekerjaan' => 'required',
             'kawin' => 'required',
             'noIjazah' => 'required',
-            'fotoIjazah' => 'image|file'
+            'fotoIjazah' => 'image|file',
+            'koordinat' => 'required'
         ]);
 
         $kelurahan = Village::where('id', $validatedData['kelurahan'])->first()->name;
@@ -135,6 +136,8 @@ class AlumniController extends Controller
             'pekerjaan' => 'required',
             'kawin' => 'required',
             'noIjazah' => 'required',
+            'fotoIjazah' => 'image|file',
+            'koordinat' => 'required'
         ]);
 
         $kelurahan = Village::where('id', $validatedData['kelurahan'])->first()->name;

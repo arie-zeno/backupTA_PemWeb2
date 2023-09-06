@@ -1,9 +1,22 @@
 @extends("alumni.layouts.main")
+<style>
+    #map2 {
+        height: 35vh;
+    }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""></script>
 @section("container")
 <meta name="csrf-token" content="{{csrf_token()}}"/>
 <h1>Isi Biodata</h1>
 
-<div class="col-sm-6">
+<div class="col-sm-8">
 
     <form method="POST" action="/alumni/bios/{{$bio->nim}}" enctype="multipart/form-data">
         @method("put")
@@ -108,6 +121,14 @@
         </select>
       </div>
 
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="koordinat">Koordinat Tempat Tinggal</label>
+        <input type="text" aria-label="Last name" id="koordinat" class="form-control @error('koordinat')
+        is-invalid
+    @enderror"  name="koordinat" placeholder="latitude, longitude" value="{{$bio->koordinat}}"><br>
+    </div>
+    <div id="map2"></div>
+
     <div class="mb-3">
         <label for="jk" class="form-label">Jenis Kelamin</label>
         <select id="jk" class="form-select" aria-label="Default select example" name="jk" >
@@ -151,6 +172,58 @@
     <button type="submit" class="btn btn-primary">Selesai</button>
 </form>
 </div>
+<script>
+    var map = L.map('map2').setView([-3.298618801108944,114.58542404981114], 16.86);
+    var baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                  attribution: '© OpenStreetMap contributors'
+              })
+              baseLayer.addTo(map);
+
+    // get location
+    var inputKoordinat = document.querySelector("#koordinat"),
+        curLocation = [{{$bio->koordinat}}]
+    
+        map.attributionControl.setPrefix(false)
+
+        var marker = new L.marker(curLocation, {
+            draggable : "true"
+        });
+
+        map.flyTo([{{$bio->koordinat}}]);
+        marker.on("dragend", (event) => {
+            var position = marker.getLatLng();
+            marker.setLatLng(position, {
+                draggable : "true"
+            }).bindPopup(position).update();
+            $("#koordinat").val(`${position.lat}, ${position.lng}`).keyup();
+        });
+
+        map.addLayer(marker);
+
+        map.on("click", (e) => {
+            if(!marker){
+                marker = L.marker(e.latlng).addTo(map);
+            }else{
+                console.log(e.latlng)
+                marker.setLatLng(e.latlng);
+            }
+            map.flyTo([e.latlng.lat,e.latlng.lng]);
+            inputKoordinat.value = `${e.latlng.lat}, ${e.latlng.lng}`;
+        })
+
+        inputKoordinat.addEventListener("input", (e) => {
+            console.log(inputKoordinat.value)
+            let koord = inputKoordinat.value.split(",")
+            if(!marker){
+                marker = L.marker(koord).addTo(map);
+            }else{
+
+                marker.setLatLng(new L.LatLng(koord[0], koord[1]));
+                map.flyTo([koord[0],koord[1]]);
+
+            }
+        });
+</script>
 @endsection
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 

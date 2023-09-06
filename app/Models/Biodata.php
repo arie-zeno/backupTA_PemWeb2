@@ -29,7 +29,9 @@ class Biodata extends Model
             'ipk',
             'kontak',
             'noIjazah',
-            'fotoIjazah'
+            'fotoIjazah',
+            'koordinat'
+
 
     ];
 

@@ -106,6 +106,16 @@
             iconSize:     [50, 50],
             });
 
+            var ceweIcon = L.icon({
+            iconUrl: "/img/icon_cewe.png",
+            iconSize:     [70, 70],
+            });
+
+            var cowoIcon = L.icon({
+            iconUrl: "/img/icon_cowo.png",
+            iconSize:     [70, 70],
+            });
+
             
 
 
@@ -117,7 +127,7 @@
         //     }).addTo(map);
 
             var baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                  attribution: '© OpenStreetMap contributors'
+                  attribution: '© OpenStreetMap contributors',
               })
               baseLayer.addTo(map);
 
@@ -135,7 +145,12 @@
             @endphp
             var latitude = {{$koordinats[0]}},
                 longitude = {{$koordinats[1]}}
-                L.marker([latitude, longitude ], {icon:manIcon})
+                @if ($biodata["jk"] == "Laki-laki")
+                    icon = cowoIcon
+                @else
+                    icon = ceweIcon
+                @endif
+                L.marker([latitude, longitude ], {icon:icon})
                 .addTo(map)
                 .on("dblclick", (e) => {
                         // var control = L.Routing.control({
@@ -185,24 +200,26 @@
                     'rgb(153, 102, 255)',
                     'rgb(255, 159, 64)'
             ];
-            var tr = []
+            var listKabupaten = []
+            var kabupaten = []
+            var provinsi = []
             var baseTree = [
                             {
                                 label: 'OpenStreeMap',
                                 layer: osm,
                                 children: [
-                                    {label: 'B&W', layer: osmBw, name: 'OpenStreeMap <b>B&W</b>'},
-                                    {label: 'OpenTopoMap', layer: otopomap, name: 'Topographic - OSM'},
+                                    {label: 'B&W', layer: osmBw, name: 'OpenStreeMap <b>B&W</b>'}
                                 ]
                             }
 
                         ];
             
-            $.getJSON('/geoJSON/banjarmasinPerKecamatan.geojson', (json) =>{
+            $.getJSON('/geoJSON/batasKecamatanKalsel2.geojson', (json) =>{
                   let html = `
                               <label id="banjar" onclick="showKecamatan(this)"><b> Kabuaten Banjarmasin </b></label> <br>
                       `
                       let i = 0;
+                      let j = 1;
                   geoLayer = L.geoJSON(json, {
                       
                       style: (feature) => {
@@ -210,21 +227,31 @@
                               fillOpacity: 0.8,
                               weight: 5,
                               opacity: 1,
-                              color: colors[i],
+                              color: 'black',
                               borderColor: 'red'
                             };
                         },
                         onEachFeature: (feature, layer)=>{
                             var iconLabel = L.divIcon({
                                 className: 'label-kecamatan',
-                                html: `${feature.properties.KECAMATAN}`,
+                                html: `${feature.properties.WADMKK}`,
 
                             });
                         html = html + `
-                        <input id="${i}" type="checkbox" class="kec" onclick="showBatas(this, ${i})">  <label for="${i}">${feature.properties.KECAMATAN} </label> <br>
+                        <input id="${i}" type="checkbox" class="kec" onclick="showBatas(this, ${i})">  <label for="${i}">${feature.properties.WADMKK} </label> <br>
                         `
-                         sub.push(L.markerClusterGroup().addLayer(layer) )      
-                         tr.push({label: `${feature.properties.KECAMATAN}`, layer:layer});      
+                         sub.push(L.markerClusterGroup().addLayer(layer) ) 
+                         console.log(feature)
+                         
+                        if(listKabupaten.length != 0 ){
+
+                            if(feature.properties.WADMKD != listKkabupaten[0]){
+                                
+                                listKabupaten.push(feature.properties.WADMKD)
+                            }
+                        }
+
+                         kabupaten.push({label: `${feature.properties.WADMKD}`, layer:layer});      
                          
                          L.marker(layer.getBounds().getCenter(), {icon:iconLabel}).addTo(sub[i]);
                          i++;
@@ -238,11 +265,11 @@
                     L.control.slideMenu(html).addTo(map);
 
                     var overlaysTree = {
-                        label: ' Kota Lainnya',
+                        label: '<span style="color:black; font-size:12px"> Kota Lainnya </span>',
                         selectAllCheckbox: 'Un/select all',
                         children: [
-                            {label: '<div id="onlysel">-Lihat yang diklik saja-</div>'},
-                            {label: 'Banjarmasin', children: tr}
+                            {label: '<div id="onlysel" style="color:black;">-Lihat yang diklik saja-</div>'},
+                            {label: 'Kabupaten', children: kabupaten}
                             
                             
                         ]
@@ -252,10 +279,12 @@
                             namedToggle: true,
                             selectorBack: false,
                             closedSymbol: '&#8862; &#x1f5c0;',
-                            openedSymbol: '&#8863; &#x1f5c1;',
-                            collapseAll: 'Collapse all',
-                            expandAll: 'Expand all',
+                            ospanenedSymbol: '&#8863; &#x1f5c1;',
+                            // collapseAll: 'Collapse all',
+                            // expandAll: 'Expand all',
                             collapsed: false,
+                            position: 'topleft'
+
                         });
 
                     lay.addTo(map).collapseTree().expandSelected().collapseTree(true);
@@ -264,7 +293,7 @@
                     });
                 })
        
-console.log(tr) 
+console.log(listKabupaten) 
                 var center = [40, 0];
 
 

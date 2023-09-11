@@ -3,6 +3,7 @@
     width: auto;
     height: auto;
     background-image: none;
+    /* color: black; */
 }
 
 .leaflet-layerstree-node {
@@ -10,6 +11,8 @@
 
 .leaflet-layerstree-header input{
     margin-left: 0px;
+    margin-right: 5px;
+    color: black;
 }
 
 
@@ -26,9 +29,12 @@
 }
 
 .leaflet-layerstree-header-label {
+    /* margin-right: 5px; */
 }
 
 .leaflet-layerstree-header-name {
+    color: black;
+
 }
 
 .leaflet-layerstree-header-space {
@@ -43,6 +49,7 @@
 }
 
 .leaflet-layerstree-closed {
+    color: black;
 }
 
 .leaflet-layerstree-opened {

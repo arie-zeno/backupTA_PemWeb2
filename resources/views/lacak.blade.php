@@ -35,6 +35,47 @@
         text-align: center;
         font-weight: bold;
     }
+    .legend {
+        padding: 6px 8px;
+        font: 14px Arial, Helvetica, sans-serif;
+        background: white;
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        width: 300px;
+        border-radius: 5px;
+        line-height: 24px;
+        color: #555;
+        }
+        .legend h4 {
+        text-align: center;
+        font-size: 16px;
+        margin: 2px 12px 8px;
+        color: #777;
+        }
+
+        .legend div {
+            display: flex;
+            align-items: center
+        }
+        .legend span {
+        position: relative;
+        bottom: 3px;
+        color: black
+        }
+
+        .legend i {
+        width: 18px;
+        height: 18px;
+        float: left;
+        margin: 0 8px 0 0;
+        opacity: 0.7;
+        }
+
+        .legend i.icon {
+        background-size: 18px;
+        background-color: rgba(255, 255, 255, 1);
+        }
+
 </style>
 
   
@@ -164,10 +205,9 @@
                 
                 .bindPopup(
                     `Nama : {{$biodata["name"]}} <br>
-                    NIM : {{$biodata["nim"]}} <br>
-                    Alamat : {{$biodata["kecamatan"]}} <br><br>
-                    <img src="{{asset('storage/' . $biodata->foto) }}" class="img-thumbnail" alt="{{$biodata["name"]}}"><br>
-                    <button class="btn btn-sm  btn-outline-success" onclick = 'return showRute(${latitude}, ${longitude})'> Rute kesini </button>
+                    NIM : {{$biodata["nim"]}} <br><br>
+                    <img src="{{asset('storage/' . $biodata->foto) }}" class="img-thumbnail" alt="{{$biodata["name"]}}"><br><br>
+                    <button class="btn btn-sm btn-outline-success" onclick = 'return showRute(${latitude}, ${longitude})'> Rute kesini </button>
                     `);
             @endforeach
 
@@ -193,14 +233,8 @@
             //   GeoJSON
             let batasKecamatan = [];
             let sub = [];
-            let colors = [
-              'rgba(255, 26, 104, 0.2)',
-                    'rgb(54, 162, 235)',
-                    'rgb(255, 206, 86)',
-                    'rgb(75, 192, 192)',
-                    'rgb(153, 102, 255)',
-                    'rgb(255, 159, 64)'
-            ];
+            let colors = ["#32b8a6", "#f5cb11", "#eb7200", "#c461eb", "#6c7000", "#bf2e2e", "#46e39c", "#9fd40c", "#ad00f2", "#fffb00", "#7ff2fa", "#e8a784"];
+            
             var kabupaten = []
             var listKabupaten = []
            var html = ``;
@@ -279,7 +313,27 @@
                     position: "topleft",
                     menuposition: "topleft",
 
-                    }).addTo(map)
+                    }).addTo(map);
+                
+                    var legend = L.control({ position: "bottomright" });
+
+                        legend.onAdd = function(map) {
+                        var div = L.DomUtil.create("div", "legend");
+
+                        div.innerHTML += "<h5>Keterangan : </h5>";
+                        div.innerHTML += '<div><img src="/img/Logo_ULM.png" width="35"><span> : FKIP ULM</span></div>';
+                        div.innerHTML += '<div><img src="/img/icon_cowo.png" width="35"><span> : Alumni (Laki-laki)</span></div>';
+                        div.innerHTML += '<div><img src="/img/icon_cewe.png" width="35"><span> : Alumni (Perempuan)</span></div>';
+                        div.innerHTML += '<div><i style="height:5px ;background:purple;"></i><span> : Batas Kecamatan</span></div>';
+                        div.innerHTML += '<div><i style="height:5px ;background:red;"></i><span> : Rute </span></div>';
+                        
+                        
+
+                        return div;
+                        };
+
+                        legend.addTo(map);
+
 
                 // L.control.slideMenu(html).addTo(map);
           

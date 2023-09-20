@@ -154,7 +154,7 @@
             @endphp
             var latitude = {{$koordinats[0]}},
                 longitude = {{$koordinats[1]}}
-                @if ($biodata["jk"] == "Laki-laki")
+                @if ($biodata["jk"] == "laki-laki")
                     icon = cowoIcon
                 @else
                     icon = ceweIcon
@@ -164,7 +164,8 @@
                 
                 .bindPopup(
                     `Nama : {{$biodata["name"]}} <br>
-                    NIM : {{$biodata["nim"]}} <br><br>
+                    NIM : {{$biodata["nim"]}} <br>
+                    Alamat : {{$biodata["kecamatan"]}} <br><br>
                     <img src="{{asset('storage/' . $biodata->foto) }}" class="img-thumbnail" alt="{{$biodata["name"]}}"><br>
                     <button class="btn btn-sm  btn-outline-success" onclick = 'return showRute(${latitude}, ${longitude})'> Rute kesini </button>
                     `);

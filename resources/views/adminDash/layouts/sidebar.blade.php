@@ -19,6 +19,12 @@
             Pekerjaan
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link {{Request::is('admin/laporan*') ? 'active' : '' }}" href="/admin/laporan">
+            <span data-feather="file-text" class="align-text-bottom"></span>
+            Laporan
+          </a>
+        </li>
        
       </ul>
 

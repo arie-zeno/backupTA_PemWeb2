@@ -53,14 +53,14 @@
 </style>
 <nav id="navbar" class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand btn btn-sm" href="/">Tracer Study</a>
+      <a id="navbar-brand" class="navbar-brand btn btn-sm" href="/">Tracer Study</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav m-auto" id="navbar-nav">
           <a class="nav-link " aria-current="page" href="/#">Home</a>
-          <a class="nav-link " href="/#about">Tracer Study</a>
+          <a  class="nav-link " href="/#about">Tracer Study</a>
           <a class="nav-link " href="/#statistik">Statistik</a>
           <a class="nav-link " href="/search">Cari Alumni</a>
           <a class="nav-link " href="/lacak">Lacak Alumni</a>
@@ -69,7 +69,7 @@
           @auth
           {{-- <a class="nav-link" href="/logout">Logout</a> --}}
         <li class="nav-item dropdown m-auto " style="list-style: none">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" id="login" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{auth()->user()->name}}
           </a>
           <ul class="dropdown-menu">

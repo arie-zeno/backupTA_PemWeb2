@@ -81,7 +81,9 @@
   
 @section("container")
 
+<div id="particles-js"></div>
   <div class="container-fluid px-5">
+
         <div class="row justify-content-center align-items-center" style="height: 100vh" id="about">
             <div class="col-sm-12">
                 {{-- <h2 class="fw-bold">Persebaran Alumni</h2> --}}
@@ -89,55 +91,12 @@
           </div>
         </div>
       </div>
-            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-        crossorigin=""/>
-        
-
-        <!-- Make sure you put this AFTER Leaflet's CSS -->
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-            crossorigin=""></script>
-
-            {{-- Plugin Path --}}
-            {{-- <link rel="stylesheet" href="/css/leaflet-measure-path.css">
-            <script src="/js/leaflet-measure-path.js"></script> --}}
-            {{-- <script src="https://elfalem.github.io/Leaflet.curve/src/leaflet.curve.js"></script> --}}
-
-            {{-- polyline --}}
-            {{-- <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
-            <script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script> --}}
-
-            
-            <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-            
-            {{-- cluster --}}
-            <link rel="stylesheet" href="js/Leaflet.markercluster/dist/MarkerCluster.css" />
-            <link rel="stylesheet" href="/js/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
-            <script src="/js/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
-            <link rel="stylesheet" href="/js/treeLayer/L.Control.Layers.Tree.css">
-            <script src="/js/treeLayer/L.Control.Layers.Tree.js"></script>
-            {{-- Slide --}}
-            <link rel="stylesheet" href="/css/L.Control.SlideMenu.css">
-            <script src="/js/L.Control.SlideMenu.js"></script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-              {{-- routing machine --}}
-              <link rel="stylesheet" href="/js/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
-              <script src="/js/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
-  
-              
+     
           
       
       <script>
 
-        let navbar = document.getElementById("navbar");
-        let navbarNav = document.getElementById("navbar-nav");
-
-            navbar.style.backgroundColor = "#ffffff88"
-            navbar.style.boxShadow = "2px 2px 2px black"
-            navbar.style.transform = "translateY(0)"
-
-            // basemap
+                 // basemap
             var map = L.map('map').setView([-3.298618801108944,114.58542404981114], 13.46);
             // map.on('contextmenu', () => {
             //     map.off();

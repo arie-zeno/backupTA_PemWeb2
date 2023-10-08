@@ -2,7 +2,7 @@
 
 <style>
     span{
-        color: #eca457;
+        color: #ff9800;
     }
     nav{
         transition: 0.2s;
@@ -98,12 +98,12 @@
   }
 </style>
 @section("container")
-    <div class="container-fluid container-home" style="position:relative">
+    {{-- <div class="container-fluid container-home" style="position:relative">
       <div style="background-color:rgba(0, 0, 0, 0.385); position: absolute; top: 0; bottom: 0; left: 0; right: 0; z-index: 1; ">
 
       </div>
       
-      <div class="container ">
+  <div class="container ">
         <div class=" row justify-content-between align-items-center" style="height: 100vh ;">
           
           
@@ -122,27 +122,45 @@
         </div>
 
       </div>
-  </div>
+  </div> --}}
+  <div class="home d-flex" style="height: 100vh;" >
+    <div id="particles-js"></div>
+    <div class="container my-auto">
 
+        <div style="position: relative; " class="row justify-content-start align-items-center">
+            <div class="col-sm-6 p-5" >
+                <h1 style="color: #222e64; line-height: 45px;">Selamat Datang Di Website <span style="color: #ff9800;"> Tracer Study</span> <br>Prodi Pendidikan Komputer <br>Universitas Lambung Mangkurat.</h1>
+                <p class="fs-5 mt-4">Mari sukseskan pelaksanaan <span> Tracer Study</span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat dengan mengisi biodata anda <a class="fst-italic" style="text-decoration: none;color: #ff9800" href="/login"> disini.</a> </p>
+            </div>
+            <div class="col-sm-6" data-aos="fade-left">
+                <img style="height: 45vh;" src="img/alumni.png" alt="">
+            </div>
+        </div>
+    </div>
+</div>
   <div class="container">
         <div class="row flex-column justify-content-center" style="height: 90vh" id="about">
-            <div class="col-sm-6">
-                <h6 class="text-secondary" >Tentang Tracer Study</h6>
-                <h2 class="fw-bold">Apa itu Tracer Study ?</h2>
-                <p>Tracer Study adalah website yang mengumpulkan data tentang kiprah lulusan di dunia kerja untuk meningkatkan kualitas pendidikan dan program-program perguruan tinggi. Data yang dikumpulkan mencakup data kelulusan alumni, data pekerjan alumni, dan lain lain.</p>
-            </div>
-            <div class="col-sm-7 ">
-              <img class="img-fluid" src="/img/tracer.png" alt="">
+              <div class="col-sm-6" data-aos="fade-left"
+              data-aos-anchor-placement="center-center">
+                  <h6 class="text-secondary" >Tentang Tracer Study</h6>
+                  <h2 class="fw-bold"> Apa itu <span>Tracer Study ?</span></h2>
+                  <p>Tracer Study adalah website yang mengumpulkan data tentang kiprah lulusan di dunia kerja untuk meningkatkan kualitas pendidikan dan program-program perguruan tinggi. Data yang dikumpulkan mencakup data kelulusan alumni, data pekerjan alumni, dan lain lain.</p>
+              </div>
+              <div class="col-sm-7 " data-aos="fade-right"
+              data-aos-anchor-placement="center-center">
+                <img class="img-fluid" src="/img/tracer.png" alt="">
+              </div>
           </div>
-        </div>
-      </div>
+  </div>
 
         <div class="container">
 
         <div class="row flex-row align-items-center" style="min-height: 90vh">
             <h2 class="fw-bold text-center" id="statistik">Statistik</h2>
             <!-- <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quis quibusdam nulla doloremque obcaecati repudiandae, nam officia quae voluptas distinctio commodi mollitia sapiente dolor quaerat facere iusto repellendus, ducimus rerum cumque?</p> -->
-      
+
+            
+            @if(count($biodatas) > 0 )
             <div class="col-sm-6 my-5">      
               <h3 class="text-center">Data Kelulusan </h3>     
                 <div>
@@ -529,6 +547,7 @@
             
             </script>
 
+          @endif
               </div>
               </div>
             
@@ -563,38 +582,5 @@
   </ul>
 </footer>
 </div>
-        <script>
-
-let navbar = document.getElementById("navbar");
-let navbarNav = document.querySelector(".navbar-nav");
-let linkNav = navbarNav.querySelectorAll("a.nav-link");
-let navbarBrand = document.querySelector("#navbar-brand");
-let tblLogin = document.querySelector("#login");
-window.addEventListener("scroll", () =>{
-  if(window.scrollY > 350){
-    navbar.style.backgroundColor = "#ffffff88"
-    navbar.style.boxShadow = "3px 3px 3px black"
-    linkNav[0].style.color = "navy"
-    linkNav[1].style.color = "navy"
-    linkNav[2].style.color = "navy"
-    linkNav[3].style.color = "navy"
-    linkNav[4].style.color = "navy"
-    tblLogin.style.color = "navy"
-    navbarBrand.style.color = "navy"
-  }else {
-    navbar.style.backgroundColor = "transparent"
-    navbar.style.boxShadow = "none"
-    linkNav[0].style.color = "white"
-    linkNav[1].style.color = "white"
-    linkNav[2].style.color = "white"
-    linkNav[3].style.color = "white"
-    linkNav[4].style.color = "white"
-    tblLogin.style.color = "white"
-    navbarBrand.style.color = "white"
-    
-  }
-});
-
-</script>
 @endsection
 

@@ -102,7 +102,7 @@ use Carbon\Carbon;
 @section("container")
   <div class="container">
         <div class="row flex-rows justify-content-center align-items-center" style="height: 90vh" id="about">
-            <div class="col-sm-5">
+            <div class="col-sm-5 animate__animated animate__headShake">
                 <h2 class="fw-bold">Cari Alumni</h2>
 
                 <div>
@@ -338,14 +338,6 @@ use Carbon\Carbon;
           <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
         </ul>
       </footer>
-      <script>
 
-        let navbar = document.getElementById("navbar");
-        let navbarNav = document.getElementById("navbar-nav");
-
-            navbar.style.backgroundColor = "#ffffff88"
-            navbar.style.boxShadow = "2px 2px 2px black"
-            navbar.style.transform = "translateY(0)"
-      </script>
 
 @endsection

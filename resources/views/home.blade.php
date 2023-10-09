@@ -9,10 +9,9 @@
     }
 
     .container-home{
-      background-image: url('/img/SAM_2141.JPG');
-      background-attachment: fixed;
-      background-position: center;
-      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .welcome{
@@ -33,7 +32,7 @@
     user-select: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 568px) {
     .bd-placeholder-img-lg {
       font-size: 3.5rem;
     }
@@ -96,6 +95,20 @@
   .bd-mode-toggle {
     z-index: 1500;
   }
+  @media (max-width: 767.98px) {
+    .container-home img{
+      display:none;
+    }
+
+    .container-home{
+      display: flex;
+      justify-content: center;
+      align-items: center
+    }
+    .container-home h1{
+      line-height: 35px;
+    }
+  }
 </style>
 @section("container")
     {{-- <div class="container-fluid container-home" style="position:relative">
@@ -123,30 +136,30 @@
 
       </div>
   </div> --}}
-  <div class="home d-flex" style="height: 100vh;" >
+  <div class="container-home" style="height: 100vh;" >
     <div id="particles-js"></div>
     <div class="container my-auto">
 
         <div style="position: relative; " class="row justify-content-start align-items-center">
             <div class="col-sm-6 p-5" >
-                <h1 style="color: #222e64; line-height: 45px;">Selamat Datang Di Website <span style="color: #ff9800;"> Tracer Study</span> <br>Prodi Pendidikan Komputer <br>Universitas Lambung Mangkurat.</h1>
+                <h1 style="color: #222e64;">Selamat Datang Di Website <span style="color: #ff9800;"> Tracer Study</span> <br>Prodi Pendidikan Komputer <br>Universitas Lambung Mangkurat.</h1>
                 <p class="fs-5 mt-4">Mari sukseskan pelaksanaan <span> Tracer Study</span> Prodi Pendidikan Komputer Universitas Lambung Mangkurat dengan mengisi biodata anda <a class="fst-italic" style="text-decoration: none;color: #ff9800" href="/login"> disini.</a> </p>
             </div>
-            <div class="col-sm-6" data-aos="fade-left">
-                <img style="height: 45vh;" src="img/alumni.png" alt="">
+            <div class="col-sm-6" data-aos="fade-up">
+                <img class="img-fluid" style="max-height: 45vh;" src="img/alumni.png" alt="">
             </div>
         </div>
     </div>
 </div>
   <div class="container">
         <div class="row flex-column justify-content-center" style="height: 90vh" id="about">
-              <div class="col-sm-6" data-aos="fade-left"
+              <div class="col-sm-6" data-aos="fade-up"
               data-aos-anchor-placement="center-center">
                   <h6 class="text-secondary" >Tentang Tracer Study</h6>
                   <h2 class="fw-bold"> Apa itu <span>Tracer Study ?</span></h2>
                   <p>Tracer Study adalah website yang mengumpulkan data tentang kiprah lulusan di dunia kerja untuk meningkatkan kualitas pendidikan dan program-program perguruan tinggi. Data yang dikumpulkan mencakup data kelulusan alumni, data pekerjan alumni, dan lain lain.</p>
               </div>
-              <div class="col-sm-7 " data-aos="fade-right"
+              <div class="col-sm-7 " data-aos="fade-up"
               data-aos-anchor-placement="center-center">
                 <img class="img-fluid" src="/img/tracer.png" alt="">
               </div>

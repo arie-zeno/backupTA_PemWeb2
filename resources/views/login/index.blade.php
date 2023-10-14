@@ -44,7 +44,7 @@
 
 
                     <h1 class="text-center" style="color: #222e64; line-height: 45px; margin-bottom:50px" >Silahkan Login</h1>
-                    <form action="/login" method="post" class="">
+                    <form id="formLogin" action="/login" method="post" class="">
                         @csrf
                     
                     <div class="mb-3">
@@ -69,9 +69,10 @@
     </div>
 
     <script>
-        document.getElementById("btnLogin").onclick = ()=>{
+        document.getElementById("formLogin").onsubmit = ()=>{
             loader.style.display = "flex";
         }
+ 
     </script>
 
 @endsection
